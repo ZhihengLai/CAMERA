@@ -4,7 +4,7 @@ from .data_buffers import Maml_data_buffer
 
 def collect_data_from_env(agent,env,num_steps , information, config,
                           lifetime_buffer , env_name=None ,for_maml_loss=False , mean_reward_for_baseline=None
-                          ,device='cpu'):
+                          ,device='cuda:0'):
 
     episodes_returns=[]
     max_episode_steps=config.max_episode_steps

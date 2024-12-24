@@ -1,0 +1,5 @@
+MAML: Device is set to :cuda:0
+the name is :  ML1
+the name of training task is :  <SawyerReachEnvV2 instance>
+2024-12-24 23:15:22,812	INFO worker.py:1821 -- Started a local Ray instance.
+[36m(pid=266767)[0m

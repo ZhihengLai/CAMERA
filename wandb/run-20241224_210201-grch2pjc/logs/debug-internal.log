@@ -1,0 +1,9 @@
+{"time":"2024-12-24T21:02:01.524283533+08:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2024-12-24T21:02:01.524299692+08:00","level":"INFO","msg":"created symlink","path":"/home/laizhiheng/my-project/camera/CAMERA/maml/my_project/wandb/run-20241224_210201-grch2pjc/logs/debug-core.log"}
+{"time":"2024-12-24T21:02:01.708906853+08:00","level":"INFO","msg":"created new stream","id":"grch2pjc"}
+{"time":"2024-12-24T21:02:01.708965066+08:00","level":"INFO","msg":"stream: started","id":"grch2pjc"}
+{"time":"2024-12-24T21:02:01.709119143+08:00","level":"INFO","msg":"handler: started","stream_id":"grch2pjc"}
+{"time":"2024-12-24T21:02:01.70987247+08:00","level":"INFO","msg":"sender: started","stream_id":"grch2pjc"}
+{"time":"2024-12-24T21:02:01.709876186+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"grch2pjc"}
+{"time":"2024-12-24T21:02:02.859092996+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-12-24T21:04:37.263693004+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/grch2pjc/file_stream\": EOF"}

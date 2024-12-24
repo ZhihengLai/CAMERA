@@ -1,0 +1,8 @@
+{"time":"2024-12-20T14:02:10.54462574+08:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2024-12-20T14:02:10.544644909+08:00","level":"INFO","msg":"created symlink","path":"/home/laizhiheng/my-project/camera/CAMERA/maml/my_project/wandb/run-20241220_140210-qbgx8u90/logs/debug-core.log"}
+{"time":"2024-12-20T14:02:10.75395798+08:00","level":"INFO","msg":"created new stream","id":"qbgx8u90"}
+{"time":"2024-12-20T14:02:10.754095933+08:00","level":"INFO","msg":"stream: started","id":"qbgx8u90"}
+{"time":"2024-12-20T14:02:10.754333174+08:00","level":"INFO","msg":"handler: started","stream_id":"qbgx8u90"}
+{"time":"2024-12-20T14:02:10.754827025+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"qbgx8u90"}
+{"time":"2024-12-20T14:02:10.754847853+08:00","level":"INFO","msg":"sender: started","stream_id":"qbgx8u90"}
+{"time":"2024-12-20T14:02:11.606545044+08:00","level":"INFO","msg":"Starting system monitor"}

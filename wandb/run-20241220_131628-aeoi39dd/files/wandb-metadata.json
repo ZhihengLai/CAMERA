@@ -1,0 +1,41 @@
+{
+  "os":  "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.31",
+  "python":  "CPython 3.10.14",
+  "startedAt":  "2024-12-20T05:16:28.544755Z",
+  "program":  "/home/laizhiheng/my-project/camera/CAMERA/maml/my_project/maml.py",
+  "codePath":  "maml.py",
+  "git":  {
+    "remote":  "git@github.com:ZhihengLai/CAMERA.git",
+    "commit":  "90df5e8ad06831fe5b11c8332d6e0ddd408aa779"
+  },
+  "email":  "2154902219@qq.com",
+  "root":  "/home/laizhiheng/my-project/camera/CAMERA/maml/my_project",
+  "host":  "laizh",
+  "executable":  "/home/laizhiheng/miniconda3/envs/maml/bin/python",
+  "codePathLocal":  "maml.py",
+  "cpu_count":  10,
+  "cpu_count_logical":  20,
+  "gpu":  "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "1081101176832",
+      "used":  "107777572864"
+    }
+  },
+  "memory":  {
+    "total":  "8166682624"
+  },
+  "cpu":  {
+    "count":  10,
+    "countLogical":  20
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+      "memoryTotal":  "4294967296",
+      "architecture":  "Ampere"
+    }
+  ],
+  "cudaVersion":  "12.6"
+}

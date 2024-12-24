@@ -1,0 +1,12 @@
+{"time":"2024-12-24T21:15:14.481384381+08:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2024-12-24T21:15:14.481398114+08:00","level":"INFO","msg":"created symlink","path":"/home/laizhiheng/my-project/camera/CAMERA/maml/my_project/wandb/run-20241224_211514-r9f3q1ol/logs/debug-core.log"}
+{"time":"2024-12-24T21:15:14.654427521+08:00","level":"INFO","msg":"created new stream","id":"r9f3q1ol"}
+{"time":"2024-12-24T21:15:14.654484725+08:00","level":"INFO","msg":"stream: started","id":"r9f3q1ol"}
+{"time":"2024-12-24T21:15:14.654562889+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"r9f3q1ol"}
+{"time":"2024-12-24T21:15:14.654631517+08:00","level":"INFO","msg":"sender: started","stream_id":"r9f3q1ol"}
+{"time":"2024-12-24T21:15:14.654667139+08:00","level":"INFO","msg":"handler: started","stream_id":"r9f3q1ol"}
+{"time":"2024-12-24T21:15:15.618652023+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-12-24T21:15:46.976811526+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/r9f3q1ol/file_stream\": EOF"}
+{"time":"2024-12-24T21:15:49.498208574+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/r9f3q1ol/file_stream\": EOF"}
+{"time":"2024-12-24T21:17:16.976620505+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/r9f3q1ol/file_stream\": EOF"}
+{"time":"2024-12-24T21:18:02.070566642+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/r9f3q1ol/file_stream\": EOF"}

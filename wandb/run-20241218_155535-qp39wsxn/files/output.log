@@ -1,0 +1,66 @@
+the name is :  ML1
+the name of training task is :  <SawyerReachEnvV2 instance>
+Traceback (most recent call last):
+  File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/laizhiheng/.vscode-server/extensions/ms-python.debugpy-2024.14.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/__main__.py", line 71, in <module>
+    cli.main()
+  File "/home/laizhiheng/.vscode-server/extensions/ms-python.debugpy-2024.14.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/../debugpy/server/cli.py", line 501, in main
+    run()
+  File "/home/laizhiheng/.vscode-server/extensions/ms-python.debugpy-2024.14.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/../debugpy/server/cli.py", line 351, in run_file
+    runpy.run_path(target, run_name="__main__")
+  File "/home/laizhiheng/.vscode-server/extensions/ms-python.debugpy-2024.14.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 310, in run_path
+    return _run_module_code(code, init_globals, run_name, pkg_name=pkg_name, script_name=fname)
+  File "/home/laizhiheng/.vscode-server/extensions/ms-python.debugpy-2024.14.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 127, in _run_module_code
+    _run_code(code, mod_globals, init_globals, mod_name, mod_spec, pkg_name, script_name)
+  File "/home/laizhiheng/.vscode-server/extensions/ms-python.debugpy-2024.14.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 118, in _run_code
+    exec(code, run_globals)
+  File "/home/laizhiheng/my-project/camera/CAMERA/maml/my_project/maml.py", line 96, in <module>
+    maml_agent = New_maml_agent(example_env, agent_config=args, maml_config=config).to(device)#初始化agent
+  File "/home/laizhiheng/my-project/camera/CAMERA/maml/my_project/maml_agent.py", line 43, in __init__
+    self.extractor = OFENet(**self.extractor_kwargs, skip_action_branch = False)
+  File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/gin/config.py", line 1605, in gin_wrapper
+    utils.augment_exception_message_and_reraise(e, err_str)
+  File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/gin/utils.py", line 41, in augment_exception_message_and_reraise
+    raise proxy.with_traceback(exception.__traceback__) from None
+  File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/gin/config.py", line 1582, in gin_wrapper
+    return fn(*new_args, **new_kwargs)
+TypeError: OFENet.__init__() missing 3 required positional arguments: 'total_units', 'num_layers', and 'batchnorm'
+  No values supplied by Gin or caller for arguments: ['batchnorm', 'num_layers', 'total_units']
+  Gin had values bound for: []
+  Caller supplied values for: ['cosine_similarity', 'dim_action', 'dim_discretize', 'dim_output', 'dim_state', 'discount', 'fourier_type', 'normalizer', 'projection_dim', 'self', 'skip_action_branch', 'use_projection']
+  In call to configurable 'OFENet' (<class 'networks.FT_net.network.OFENet'>)
+Traceback (most recent call last):
+  File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/laizhiheng/.vscode-server/extensions/ms-python.debugpy-2024.14.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/__main__.py", line 71, in <module>
+    cli.main()
+  File "/home/laizhiheng/.vscode-server/extensions/ms-python.debugpy-2024.14.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/../debugpy/server/cli.py", line 501, in main
+    run()
+  File "/home/laizhiheng/.vscode-server/extensions/ms-python.debugpy-2024.14.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/../debugpy/server/cli.py", line 351, in run_file
+    runpy.run_path(target, run_name="__main__")
+  File "/home/laizhiheng/.vscode-server/extensions/ms-python.debugpy-2024.14.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 310, in run_path
+    return _run_module_code(code, init_globals, run_name, pkg_name=pkg_name, script_name=fname)
+  File "/home/laizhiheng/.vscode-server/extensions/ms-python.debugpy-2024.14.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 127, in _run_module_code
+    _run_code(code, mod_globals, init_globals, mod_name, mod_spec, pkg_name, script_name)
+  File "/home/laizhiheng/.vscode-server/extensions/ms-python.debugpy-2024.14.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 118, in _run_code
+    exec(code, run_globals)
+  File "/home/laizhiheng/my-project/camera/CAMERA/maml/my_project/maml.py", line 96, in <module>
+    maml_agent = New_maml_agent(example_env, agent_config=args, maml_config=config).to(device)#初始化agent
+  File "/home/laizhiheng/my-project/camera/CAMERA/maml/my_project/maml_agent.py", line 43, in __init__
+    self.extractor = OFENet(**self.extractor_kwargs, skip_action_branch = False)
+  File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/gin/config.py", line 1605, in gin_wrapper
+    utils.augment_exception_message_and_reraise(e, err_str)
+  File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/gin/utils.py", line 41, in augment_exception_message_and_reraise
+    raise proxy.with_traceback(exception.__traceback__) from None
+  File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/gin/config.py", line 1582, in gin_wrapper
+    return fn(*new_args, **new_kwargs)
+TypeError: OFENet.__init__() missing 3 required positional arguments: 'total_units', 'num_layers', and 'batchnorm'
+  No values supplied by Gin or caller for arguments: ['batchnorm', 'num_layers', 'total_units']
+  Gin had values bound for: []
+  Caller supplied values for: ['cosine_similarity', 'dim_action', 'dim_discretize', 'dim_output', 'dim_state', 'discount', 'fourier_type', 'normalizer', 'projection_dim', 'self', 'skip_action_branch', 'use_projection']
+  In call to configurable 'OFENet' (<class 'networks.FT_net.network.OFENet'>)

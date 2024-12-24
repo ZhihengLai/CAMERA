@@ -1,0 +1,165 @@
+the name is :  ML1
+the name of training task is :  <SawyerReachEnvV2 instance>
+2024-12-19 19:11:50,136	INFO worker.py:1821 -- Started a local Ray instance.
+[36m(pid=8018)[0m Traceback (most recent call last):
+[36m(pid=8018)[0m   File "<string>", line 36, in <module>
+[36m(pid=8018)[0m BrokenPipeError: [Errno 32] Broken pipe
+[36m(pid=5992)[0m
+[36m(pid=6004)[0m
+[36m(pid=6000)[0m
+[36m(pid=6003)[0m
+[36m(pid=6010)[0m
+[36m(pid=5993)[0m
+[36m(pid=6007)[0m
+[36m(pid=6017)[0m
+[36m(pid=5996)[0m
+[36m(pid=6005)[0m
+[36m(pid=6016)[0m
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: f73e8d915b6a455be00df06f9098bced31f9292601000000 Worker ID: 4e77355781dfb6cdc33dbf893f7c7438e01c64ae5cc885e0310093b9 Node ID: 08be0623a1f8791da20bf123dbce07a3f4d5211aa6cb52f67604a587 Worker IP address: 10.180.80.122 Worker port: 44994 Worker PID: 5993 Worker exit type: SYSTEM_ERROR Worker exit detail: The leased worker has unrecoverable failure. Worker is requested to be destroyed when it is returned. RPC Error message: Socket closed; RPC Error details:
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: b54a3bf0eed72c1f10bf1529b3e0ecacc66517f001000000 Worker ID: dbf2d1620765423bc10eb236257ad0cc157f361d1d3bc8aef7156970 Node ID: 08be0623a1f8791da20bf123dbce07a3f4d5211aa6cb52f67604a587 Worker IP address: 10.180.80.122 Worker port: 45948 Worker PID: 6007 Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+[36m(pid=5992)[0m Device set to : cpu
+[36m(inner_loop pid=5992)[0m Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.
+[36m(inner_loop pid=5992)[0m Traceback (most recent call last):
+[36m(inner_loop pid=5992)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 460, in deserialize_objects
+[36m(inner_loop pid=5992)[0m     obj = self._deserialize_object(data, metadata, object_ref)
+[36m(inner_loop pid=5992)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 317, in _deserialize_object
+[36m(inner_loop pid=5992)[0m     return self._deserialize_msgpack_data(data, metadata_fields)
+[36m(inner_loop pid=5992)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 272, in _deserialize_msgpack_data
+[36m(inner_loop pid=5992)[0m     python_objects = self._deserialize_pickle5_data(pickle5_data)
+[36m(inner_loop pid=5992)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 262, in _deserialize_pickle5_data
+[36m(inner_loop pid=5992)[0m     obj = pickle.loads(in_band)
+[36m(inner_loop pid=5992)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/storage.py", line 414, in _load_from_bytes
+[36m(inner_loop pid=5992)[0m     return torch.load(io.BytesIO(b), weights_only=False)
+[36m(inner_loop pid=5992)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1114, in load
+[36m(inner_loop pid=5992)[0m     return _legacy_load(
+[36m(inner_loop pid=5992)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1348, in _legacy_load
+[36m(inner_loop pid=5992)[0m     result = unpickler.load()
+[36m(inner_loop pid=5992)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1281, in persistent_load
+[36m(inner_loop pid=5992)[0m     obj = restore_location(obj, location)
+[36m(inner_loop pid=5992)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 414, in default_restore_location
+[36m(inner_loop pid=5992)[0m     result = fn(storage, location)
+[36m(inner_loop pid=5992)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 391, in _deserialize
+[36m(inner_loop pid=5992)[0m     device = _validate_device(location, backend_name)
+[36m(inner_loop pid=5992)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 364, in _validate_device
+[36m(inner_loop pid=5992)[0m     raise RuntimeError(f'Attempting to deserialize object on a {backend_name.upper()} '
+[36m(inner_loop pid=5992)[0m RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.
+[36m(pid=7263)[0m
+[36m(pid=7267)[0m
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: d2831dd1fe66e9af1a86ceaebd5930b2001a2b8301000000 Worker ID: dab80578a12dd2679ee7cd14190373f75e66155f8593661cfb6db5d0 Node ID: 08be0623a1f8791da20bf123dbce07a3f4d5211aa6cb52f67604a587 Worker IP address: 10.180.80.122 Worker port: 45364 Worker PID: 6005 Worker exit type: SYSTEM_ERROR Worker exit detail: The leased worker has unrecoverable failure. Worker is requested to be destroyed when it is returned. RPC Error message: Socket closed; RPC Error details:
+[36m(pid=6005)[0m Device set to : cpu[32m [repeated 8x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[33m(raylet)[0m [2024-12-19 19:12:52,129 E 5856 5856] (raylet) node_manager.cc:3069: 50 Workers (tasks / actors) killed due to memory pressure (OOM), 0 Workers crashed due to other reasons at node (ID: 08be0623a1f8791da20bf123dbce07a3f4d5211aa6cb52f67604a587, IP: 10.180.80.122) over the last time period. To see more information about the Workers killed on this node, use `ray logs raylet.out -ip 10.180.80.122`
+[33m(raylet)[0m
+[33m(raylet)[0m Refer to the documentation on how to address the out of memory issue: https://docs.ray.io/en/latest/ray-core/scheduling/ray-oom-prevention.html. Consider provisioning more memory on this node or reducing task parallelism by requesting more CPUs per task. To adjust the kill threshold, set the environment variable `RAY_memory_usage_threshold` when starting Ray. To disable worker killing, set the environment variable `RAY_memory_monitor_refresh_ms` to zero.
+[36m(inner_loop pid=6016)[0m Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m Traceback (most recent call last):[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 460, in deserialize_objects[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m     obj = self._deserialize_object(data, metadata, object_ref)[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 317, in _deserialize_object[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m     return self._deserialize_msgpack_data(data, metadata_fields)[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 272, in _deserialize_msgpack_data[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m     python_objects = self._deserialize_pickle5_data(pickle5_data)[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 262, in _deserialize_pickle5_data[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m     obj = pickle.loads(in_band)[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/storage.py", line 414, in _load_from_bytes[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m     return torch.load(io.BytesIO(b), weights_only=False)[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1114, in load[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m     return _legacy_load([32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1348, in _legacy_load[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m     result = unpickler.load()[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1281, in persistent_load[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m     obj = restore_location(obj, location)[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 414, in default_restore_location[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m     result = fn(storage, location)[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 391, in _deserialize[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m     device = _validate_device(location, backend_name)[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 364, in _validate_device[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m     raise RuntimeError(f'Attempting to deserialize object on a {backend_name.upper()} '[32m [repeated 8x across cluster][0m
+[36m(inner_loop pid=6016)[0m RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.[32m [repeated 8x across cluster][0m
+[36m(pid=7263)[0m Device set to : cpu
+[36m(pid=7267)[0m Device set to : cpu
+[36m(inner_loop pid=7263)[0m Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m Traceback (most recent call last):[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 460, in deserialize_objects[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m     obj = self._deserialize_object(data, metadata, object_ref)[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 317, in _deserialize_object[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m     return self._deserialize_msgpack_data(data, metadata_fields)[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 272, in _deserialize_msgpack_data[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m     python_objects = self._deserialize_pickle5_data(pickle5_data)[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 262, in _deserialize_pickle5_data[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m     obj = pickle.loads(in_band)[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/storage.py", line 414, in _load_from_bytes[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m     return torch.load(io.BytesIO(b), weights_only=False)[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1114, in load[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m     return _legacy_load([32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1348, in _legacy_load[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m     result = unpickler.load()[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1281, in persistent_load[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m     obj = restore_location(obj, location)[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 414, in default_restore_location[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m     result = fn(storage, location)[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 391, in _deserialize[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m     device = _validate_device(location, backend_name)[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 364, in _validate_device[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m     raise RuntimeError(f'Attempting to deserialize object on a {backend_name.upper()} '[32m [repeated 17x across cluster][0m
+[36m(inner_loop pid=7263)[0m RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.[32m [repeated 17x across cluster][0m
+[36m(pid=8917)[0m
+[36m(pid=9050)[0m
+[36m(pid=9570)[0m
+[36m(pid=8917)[0m Device set to : cpu
+[36m(pid=9050)[0m Device set to : cpu
+[36m(inner_loop pid=9050)[0m Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m Traceback (most recent call last):[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 460, in deserialize_objects[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m     obj = self._deserialize_object(data, metadata, object_ref)[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 317, in _deserialize_object[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m     return self._deserialize_msgpack_data(data, metadata_fields)[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 272, in _deserialize_msgpack_data[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m     python_objects = self._deserialize_pickle5_data(pickle5_data)[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 262, in _deserialize_pickle5_data[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m     obj = pickle.loads(in_band)[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/storage.py", line 414, in _load_from_bytes[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m     return torch.load(io.BytesIO(b), weights_only=False)[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1114, in load[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m     return _legacy_load([32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1348, in _legacy_load[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m     result = unpickler.load()[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1281, in persistent_load[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m     obj = restore_location(obj, location)[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 414, in default_restore_location[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m     result = fn(storage, location)[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 391, in _deserialize[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m     device = _validate_device(location, backend_name)[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 364, in _validate_device[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m     raise RuntimeError(f'Attempting to deserialize object on a {backend_name.upper()} '[32m [repeated 4x across cluster][0m
+[36m(inner_loop pid=9050)[0m RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.[32m [repeated 4x across cluster][0m
+[33m(raylet)[0m [2024-12-19 19:13:52,132 E 5856 5856] (raylet) node_manager.cc:3069: 9 Workers (tasks / actors) killed due to memory pressure (OOM), 0 Workers crashed due to other reasons at node (ID: 08be0623a1f8791da20bf123dbce07a3f4d5211aa6cb52f67604a587, IP: 10.180.80.122) over the last time period. To see more information about the Workers killed on this node, use `ray logs raylet.out -ip 10.180.80.122`
+[33m(raylet)[0m
+[33m(raylet)[0m Refer to the documentation on how to address the out of memory issue: https://docs.ray.io/en/latest/ray-core/scheduling/ray-oom-prevention.html. Consider provisioning more memory on this node or reducing task parallelism by requesting more CPUs per task. To adjust the kill threshold, set the environment variable `RAY_memory_usage_threshold` when starting Ray. To disable worker killing, set the environment variable `RAY_memory_monitor_refresh_ms` to zero.
+[36m(inner_loop pid=9570)[0m Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.
+[36m(inner_loop pid=9570)[0m Traceback (most recent call last):
+[36m(inner_loop pid=9570)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 460, in deserialize_objects
+[36m(inner_loop pid=9570)[0m     obj = self._deserialize_object(data, metadata, object_ref)
+[36m(inner_loop pid=9570)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 317, in _deserialize_object
+[36m(inner_loop pid=9570)[0m     return self._deserialize_msgpack_data(data, metadata_fields)
+[36m(inner_loop pid=9570)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 272, in _deserialize_msgpack_data
+[36m(inner_loop pid=9570)[0m     python_objects = self._deserialize_pickle5_data(pickle5_data)
+[36m(inner_loop pid=9570)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 262, in _deserialize_pickle5_data
+[36m(inner_loop pid=9570)[0m     obj = pickle.loads(in_band)
+[36m(inner_loop pid=9570)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/storage.py", line 414, in _load_from_bytes
+[36m(inner_loop pid=9570)[0m     return torch.load(io.BytesIO(b), weights_only=False)
+[36m(inner_loop pid=9570)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1114, in load
+[36m(inner_loop pid=9570)[0m     return _legacy_load(
+[36m(inner_loop pid=9570)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1348, in _legacy_load
+[36m(inner_loop pid=9570)[0m     result = unpickler.load()
+[36m(inner_loop pid=9570)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1281, in persistent_load
+[36m(inner_loop pid=9570)[0m     obj = restore_location(obj, location)
+[36m(inner_loop pid=9570)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 414, in default_restore_location
+[36m(inner_loop pid=9570)[0m     result = fn(storage, location)
+[36m(inner_loop pid=9570)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 391, in _deserialize
+[36m(inner_loop pid=9570)[0m     device = _validate_device(location, backend_name)
+[36m(inner_loop pid=9570)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 364, in _validate_device
+[36m(inner_loop pid=9570)[0m     raise RuntimeError(f'Attempting to deserialize object on a {backend_name.upper()} '
+[36m(inner_loop pid=9570)[0m RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.
+[33m(raylet)[0m
+[33m(raylet)[0m [2024-12-19 19:17:52,141 E 5856 5856] (raylet) node_manager.cc:3069: 2 Workers (tasks / actors) killed due to memory pressure (OOM), 0 Workers crashed due to other reasons at node (ID: 08be0623a1f8791da20bf123dbce07a3f4d5211aa6cb52f67604a587, IP: 10.180.80.122) over the last time period. To see more information about the Workers killed on this node, use `ray logs raylet.out -ip 10.180.80.122`
+[33m(raylet)[0m Refer to the documentation on how to address the out of memory issue: https://docs.ray.io/en/latest/ray-core/scheduling/ray-oom-prevention.html. Consider provisioning more memory on this node or reducing task parallelism by requesting more CPUs per task. To adjust the kill threshold, set the environment variable `RAY_memory_usage_threshold` when starting Ray. To disable worker killing, set the environment variable `RAY_memory_monitor_refresh_ms` to zero.

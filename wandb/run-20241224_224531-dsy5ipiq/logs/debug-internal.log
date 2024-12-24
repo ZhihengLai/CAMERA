@@ -1,0 +1,36 @@
+{"time":"2024-12-24T22:45:31.442044245+08:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2024-12-24T22:45:31.442062547+08:00","level":"INFO","msg":"created symlink","path":"/home/laizhiheng/my-project/camera/CAMERA/maml/my_project/wandb/run-20241224_224531-dsy5ipiq/logs/debug-core.log"}
+{"time":"2024-12-24T22:45:31.641834056+08:00","level":"INFO","msg":"created new stream","id":"dsy5ipiq"}
+{"time":"2024-12-24T22:45:31.641883261+08:00","level":"INFO","msg":"stream: started","id":"dsy5ipiq"}
+{"time":"2024-12-24T22:45:31.641989684+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"dsy5ipiq"}
+{"time":"2024-12-24T22:45:31.642022897+08:00","level":"INFO","msg":"sender: started","stream_id":"dsy5ipiq"}
+{"time":"2024-12-24T22:45:31.642487797+08:00","level":"INFO","msg":"handler: started","stream_id":"dsy5ipiq"}
+{"time":"2024-12-24T22:45:32.69999553+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-12-24T22:46:04.111915755+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T22:46:49.096920054+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T22:47:34.044799607+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T22:48:19.070724118+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T22:49:49.053338676+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T22:50:23.626299861+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": read tcp 127.0.0.1:46409->127.0.0.1:7890: read: connection reset by peer"}
+{"time":"2024-12-24T22:53:49.091674132+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T22:54:34.237130619+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T22:56:04.042453578+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T22:58:19.146431259+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T22:59:04.159904823+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T22:59:49.132862976+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T23:00:38.711508051+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": read tcp 127.0.0.1:48239->127.0.0.1:7890: read: connection reset by peer"}
+{"time":"2024-12-24T23:02:23.610657074+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": read tcp 127.0.0.1:45717->127.0.0.1:7890: read: connection reset by peer"}
+{"time":"2024-12-24T23:02:31.11078165+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": read tcp 127.0.0.1:47029->127.0.0.1:7890: read: connection reset by peer"}
+{"time":"2024-12-24T23:03:04.027058639+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T23:03:23.617765078+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": read tcp 127.0.0.1:48641->127.0.0.1:7890: read: connection reset by peer"}
+{"time":"2024-12-24T23:04:34.196249933+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T23:05:19.116134772+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T23:08:19.035873179+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T23:08:21.66514042+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T23:09:49.124694912+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T23:10:04.020245546+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T23:10:49.025560961+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T23:11:34.072366176+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T23:12:04.133453216+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T23:12:06.921550801+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}
+{"time":"2024-12-24T23:13:04.03349887+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/dsy5ipiq/file_stream\": EOF"}

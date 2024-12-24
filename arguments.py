@@ -57,6 +57,8 @@ def parse_args():
     parser.add_argument("--lam", default=0.97, type=float)
     parser.add_argument("--update_every", default=5, type=int)
 
+    # evaluate when estimating maml loss
+    parser.add_argument("--evaluate_every", default=20, type=int)
 
     parser.add_argument("--remark", default="HalfCheetah, SPF")
 

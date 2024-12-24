@@ -18,9 +18,9 @@ device = torch.device('cpu')
 if(torch.cuda.is_available()): 
     device = torch.device('cuda:0') 
     torch.cuda.empty_cache()
-    print("Device set to : " + str(torch.cuda.get_device_name(device)))
+    print("PPO: Device set to : " + str(torch.cuda.get_device_name(device)))
 else:
-    print("Device set to : cpu")
+    print("PPO: Device set to : cpu")
 
 class RolloutBuffer:
     """A buffer for storing trajectories experienced by a PPO agent.
@@ -28,7 +28,7 @@ class RolloutBuffer:
     the advantages of state-action pairs.
     """
 
-    def __init__(self, obs_dim, act_dim, capacity, gamma=0.99, lam=0.95, device='cpu'):
+    def __init__(self, obs_dim, act_dim, capacity, gamma=0.99, lam=0.95, device='cuda:0'):
         self.obs_buf = torch.zeros((capacity, obs_dim), dtype=torch.float32, device=device)
         self.act_buf = torch.zeros((capacity, act_dim), dtype=torch.float32, device=device)
         self.obs2_buf = torch.zeros((capacity, obs_dim), dtype=torch.float32, device=device)
@@ -237,29 +237,26 @@ class PPO(nn.Module):
 
         self.actor = actor.to(self.device)
         self.critic_original = critic.to(self.device)
-        self.critic_active = self.critic
+        self.critic_active = self.critic_original
 
-        self.ofe_net_original = feature_extractor.to(self.device)
-        self.ofe_net_active = self.ofe_net_original
+        self.ofe_net = feature_extractor.to(self.device)
 
         # Clone used in adaptation phase
-        self.extractor_clone = None
-        self.critic_clone = None
         self.mode = "Validation"
 
         # Initialize optimizer of inner loop
         self.actor_optimizer = optim.Adam(self.actor.parameters(), lr=pi_lr)
-        self.critic_optimizer = optim.Adam(self.critic.parameters(), lr=vf_lr)
+
+        self.pi_lr = pi_lr
+        self.vf_lr = vf_lr
 
     def clone_for_adaptation(self):
         '''
         Clone the extractor and critic network for inner loop adaptation
         '''
-        self.extractor_clone = self.ofe_net_original.clone()
-        self.ofe_net_active = self.extractor_clone
+        self.critic_active = self.critic_original.clone()
 
-        self.critic_clone = self.critic.clone()
-        self.critic_active = self.critic_clone
+        self.ofe_net.clone_for_adaptation()
 
         self.mode = "Adaptation"
 
@@ -267,20 +264,24 @@ class PPO(nn.Module):
         '''
         Reset the extractor and critic network back to the version before adaptation
         '''
-        self.extractor_clone = None
-        self.ofe_net_active = self.ofe_net_original
-
-        self.critic_clone = None
         self.critic_active = self.critic_original
+
+        self.ofe_net.reset_cloned_networks()
 
         self.mode = "Validation"
 
+    def set_optimizers(self):
+        '''
+        Set the optimizers for the parameters of loaded state_dicts in inner loop.
+        '''
+        self.actor_optimizer = optim.Adam(self.actor.parameters(), lr=self.pi_lr)
+
     def extractor_loss_for_adaptation(self, target_model, states, actions, next_states, next_actions, dones, Hth_states=None):
-        loss = self.ofe_net_active.model.compute_loss(target_model, states, actions, next_states, next_actions, dones, Hth_states)
+        loss = self.ofe_net.compute_loss(target_model, states, actions, next_states, next_actions, dones, Hth_states)
         return loss
     
     def extractor_adapt(self, loss):
-        self.ofe_net_active.adapt(loss)
+        self.ofe_net.adapt(loss)
 
     def get_action(self, raw_state, test=False):
         raw_state = torch.tensor(raw_state, dtype=torch.float32).to(self.device)
@@ -319,7 +320,7 @@ class PPO(nn.Module):
 
         raw_state_tensor = torch.tensor(raw_state, dtype=torch.float32).to(self.device)
         action_tensor = torch.tensor(action, dtype=torch.float32).to(self.device)
-        state_feature = self.ofe_net_active.features_from_states(raw_state_tensor)
+        state_feature = self.ofe_net.features_from_states(raw_state_tensor)
         logp = self.actor.compute_log_probs(state_feature, action_tensor)
         v = self.critic_active(state_feature)
 
@@ -335,7 +336,7 @@ class PPO(nn.Module):
             raw_state = np.expand_dims(raw_state, axis=0).astype(np.float32)
 
         raw_state_tensor = torch.tensor(raw_state, dtype=torch.float32).to(self.device)
-        state_feature = self.ofe_net_active.features_from_states(raw_state_tensor)
+        state_feature = self.ofe_net.features_from_states(raw_state_tensor)
         v = self.critic_active(state_feature)
 
         if is_single_input:
@@ -345,12 +346,12 @@ class PPO(nn.Module):
 
     def _get_action_logp_v_body(self, raw_state, test):
         action, logp = self._get_action_body(raw_state, test)[:2]
-        state_feature = self.ofe_net_active.features_from_states(raw_state)
+        state_feature = self.ofe_net.features_from_states(raw_state)
         v = self.critic_active(state_feature)
         return action, logp, v
 
     def _get_action_body(self, state, test):
-        state_feature = self.ofe_net_active.features_from_states(state)
+        state_feature = self.ofe_net.features_from_states(state)
         if test:
             return self.actor.mean_action(state_feature)
         else:
@@ -379,7 +380,7 @@ class PPO(nn.Module):
         return actor_loss.item(), critic_loss.item()
 
     def _train_actor_body(self, raw_states, actions, advantages, logp_olds):
-        state_features = self.ofe_net_active.features_from_states(raw_states)
+        state_features = self.ofe_net.features_from_states(raw_states)
         logp_news = self.actor.compute_log_probs(state_features, actions)
         ratio = torch.exp(logp_news - logp_olds.squeeze())
 
@@ -398,21 +399,19 @@ class PPO(nn.Module):
         return actor_loss, kl.item(), entropy.item(), logp_news, ratio
 
     def _train_critic_body(self, raw_states, returns):
-        state_features = self.ofe_net_active.features_from_states(raw_states)
+        state_features = self.ofe_net.features_from_states(raw_states)
         current_V = self.critic_active(state_features)
         td_errors = returns.squeeze() - current_V.squeeze()
         critic_loss = torch.mean(0.5 * td_errors.pow(2))
 
-        self.critic_optimizer.zero_grad()
-        critic_loss.backward()
-        self.critic_optimizer.step()
+        self.critic_active.adapt(critic_loss)
 
         return critic_loss
 
     def save(self, save_dir):
         torch.save(self.actor.state_dict(), os.path.join(save_dir, 'agent_actor_model.pth'))
-        torch.save(self.critic_active.model.state_dict(), os.path.join(save_dir, 'agent_critic_model.pth'))
+        torch.save(self.critic_active.module.state_dict(), os.path.join(save_dir, 'agent_critic_model.pth'))
 
     def load(self, load_dir):
         self.actor.load_state_dict(torch.load(os.path.join(load_dir, 'agent_actor_model.pth')))
-        self.critic_active.model.load_state_dict(torch.load(os.path.join(load_dir, 'agent_critic_model.pth')))
+        self.critic_active.module.load_state_dict(torch.load(os.path.join(load_dir, 'agent_critic_model.pth')))

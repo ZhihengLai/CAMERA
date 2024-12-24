@@ -1,0 +1,12 @@
+MAML: Device is set to :cuda:0
+the name is :  ML1
+the name of training task is :  <SawyerReachEnvV2 instance>
+2024-12-24 23:16:31,638	INFO worker.py:1821 -- Started a local Ray instance.
+[36m(pid=269278)[0m
+[36m(pid=269282)[0m
+[36m(pid=269282)[0m PPO: Device set to : NVIDIA GeForce RTX 3050 Ti Laptop GPU
+[36m(pid=269283)[0m
+[36m(pid=270491)[0m
+[36m(pid=270491)[0m PPO: Device set to : NVIDIA GeForce RTX 3050 Ti Laptop GPU[32m [repeated 2x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(pid=270503)[0m
+[36m(pid=270565)[0m

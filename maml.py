@@ -10,13 +10,13 @@ import wandb
 import ray
 
 
-from .blocks.maml_config import get_config
-from .maml_agent import New_maml_agent
-from .blocks.data_collection import collect_data_from_env
-from .blocks.TRPO_and_adapt_loss import maml_actor_trpo_update, maml_critic_update, maml_extractor_update
-from .blocks.data_buffers import Lifetime_buffer
-from .blocks.general_utils import Logger ,Statistics_tracker,Sampler ,Tasks_batch_sampler
-from .arguments import parse_args
+from blocks.maml_config import get_config, Metaworld
+from maml_agent import New_maml_agent
+from blocks.data_collection import collect_data_from_env
+from blocks.TRPO_and_adapt_loss import maml_actor_trpo_update, maml_critic_update, maml_extractor_update
+from blocks.data_buffers import Lifetime_buffer
+from blocks.general_utils import Logger ,Statistics_tracker,Sampler ,Tasks_batch_sampler
+from arguments import parse_args
 
 config_setting='metaworld'
 config=get_config(config_setting)
@@ -84,21 +84,21 @@ if config.seeding==True:
     np.random.seed(config.seed)#设置 NumPy 中的随机种子，确保 NumPy 生成的随机数序列在每次运行时保持一致。
     torch.manual_seed(config.seed)#设置 PyTorch 的随机种子，确保 PyTorch 中生成的随机数（如初始化网络权重、打乱数据等）也可以复现。
 if config.device=='auto':#设置计算设备是cpu或者gpu
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 else:
     device=config.device
 
-
+print(f'MAML: Device is set to :{device}')
 
 print("the name is : ", benchmark_name)
 
 print("the name of training task is : ", example_env)
-maml_agent = New_maml_agent(example_env, config=args).to(device)#初始化agent
-maml_actor_optimizer = optim.Adam(maml_agent.actor.parameters(), lr=config.maml_agent_lr, eps=config.maml_agent_epsilon)#初始化优化器
-maml_critic_optimizer = optim.Adam(maml_agent.critic.parameters(), lr=config.critic_lr) #TODO set learning rate for critic
+maml_agent = New_maml_agent(example_env, agent_config=args, maml_config=config).to(device)#初始化agent
 
-#optimizer for extractor
-maml_extractor_optimizer = optim.Adam(maml_agent.extractor.parameters(), lr=config.extractor_lr) #TODO set learning rate for extractor
+#初始化优化器
+maml_actor_optimizer = optim.Adam(maml_agent.actor.parameters(), lr=config.maml_agent_lr, eps=config.maml_agent_epsilon)
+maml_critic_optimizer = optim.Adam(maml_agent.critic.parameters(), lr=config.maml_critic_lr)
+maml_extractor_optimizer = optim.Adam(maml_agent.extractor.parameters(), lr=config.maml_extractor_lr)
 
 #初始化数据统计跟踪器和日志记录器
 data_statistics=Statistics_tracker()
@@ -121,7 +121,7 @@ def validation_performance(logger):
 ############ DEFINE BEHAVIOUR OF INNER LOOPS #############
 
 
-def inner_loop(base_policy_state_dict,  task , config, data_statistics):
+def inner_loop(base_policy_state_dict,  task , config : Metaworld, data_statistics):
     import sys
     sys.path.append('../')
 
@@ -130,7 +130,7 @@ def inner_loop(base_policy_state_dict,  task , config, data_statistics):
     adaptation_mean_reward_for_baseline= data_statistics.rewards_mean
 
     #初始化agent
-    maml_agent=New_maml_agent(env, config=args).to(device)
+    maml_agent=New_maml_agent(env, agent_config=args, maml_config=config).to(device)
     #将原始策略加载到agent中
     torchopt.recover_state_dict(maml_agent, base_policy_state_dict)
 
@@ -144,18 +144,17 @@ def inner_loop(base_policy_state_dict,  task , config, data_statistics):
 
     information={'prev_done' :torch.ones(1).to(device) , 'current_episode_success':False ,
                  'current_episode_return':0, 'current_lifetime_step':0}
-    #TODO 同步config.num_adaptation_updates_in_inner_loop
-    #TODO 要么对maml_agent.adapt()添加一个lifetime_buffer参数，要么把lifetime_buffer删掉。
+
     information = maml_agent.adapt(num_steps=config.num_env_steps_per_adaptation_update , information=information,
-                                    config=config, lifetime_buffer=lifetime_buffer, mean_reward_for_baseline=adaptation_mean_reward_for_baseline)
+                                    config=config, lifetime_buffer=lifetime_buffer, mean_reward_for_baseline=adaptation_mean_reward_for_baseline, device=device)
 
     #META LOSS CALCULATION
     #collect data with adapted policy for the outer loop update (for computing the loss that is used for the maml meta update - updating the base policy) .
 
-    maml_agent.evaluate_extractor_and_critic() #back propagate pred_loss with respect to the extractor
+    maml_agent.evaluate_extractor_and_critic(config=config) #back propagate pred_loss with respect to the extractor
     maml_buffer, _ =collect_data_from_env(agent=maml_agent ,env=env, num_steps=config.num_env_steps_for_estimating_maml_loss, information=information,
                                     config=config, lifetime_buffer=lifetime_buffer ,env_name=f'{task.env_name}' ,
-                                    for_maml_loss=True )
+                                    for_maml_loss=True, device=device)
 
     #从适应后的 maml_agent 中提取更新后的策略参数，以便在外部更新时使用。
     adapted_policy_state_dict = torchopt.extract_state_dict(maml_agent)
@@ -188,8 +187,8 @@ for i in range(config.num_outer_loop_updates):
 
     #使用 Ray 的并行能力，ray.get 将 remote_inner_loop 函数并行地执行在每个任务上，
     #每个任务都会返回三个东西：lifetime_buffers（包含生命期数据）、maml_buffers（包含用于 MAML 更新的数据）以及 adapted_policy_state_dicts（任务适应后的策略）。
-    inputs=[ [policy_state_dict_ref, task , config_ref, data_statistics_ref] for task in next(task_sampler)]#创建一个任务列表
-    lifetime_buffers ,maml_buffers, adapted_policy_state_dicts = zip(*ray.get([remote_inner_loop.options(num_cpus=1).remote(*i) for i in inputs])) 
+    inputs=[[policy_state_dict_ref, task , config_ref, data_statistics_ref] for task in next(task_sampler)]#创建一个任务列表
+    lifetime_buffers ,maml_buffers, adapted_policy_state_dicts = zip(*ray.get([remote_inner_loop.options(num_gpus=1).remote(*i) for i in inputs])) 
     
     # take maml_agent back to its original state 
     torchopt.recover_state_dict(maml_agent, policy_state_dict)
@@ -232,7 +231,7 @@ for i in range(config.num_outer_loop_updates):
     # --------------  UPDATE MODEL ------------------------
         
     maml_actor_trpo_update(maml_agent=maml_agent, data_buffers=maml_buffers,adapted_policies_states=adapted_policy_state_dicts ,config=config, logging=True)
-    maml_critic_update(maml_critic=maml_agent.critic, optimizer=maml_critic_optimizer, meta_batch_size=config.num_inner_loops_per_update)
-    maml_extractor_update(maml_agent=maml_agent.extractor, optimizer=maml_extractor_optimizer, meta_batch_size=config.num_inner_loops_per_update)
+    maml_critic_update(maml_agent=maml_agent, optimizer=maml_critic_optimizer, meta_batch_size=config.num_inner_loops_per_update)
+    maml_extractor_update(maml_agent=maml_agent, optimizer=maml_extractor_optimizer, meta_batch_size=config.num_inner_loops_per_update)
 
 wandb.finish()

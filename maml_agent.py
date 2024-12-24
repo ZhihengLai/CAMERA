@@ -6,63 +6,62 @@ from torch.distributions.normal import Normal
 import numpy as np
 import time
 import learn2learn as l2l
-from .networks.FT_net.network import OFENet  # Assuming OFENet is implemented and imported from another module
-from .networks.policy_net.PPO import GaussianActor, CriticV, PPO, RolloutBuffer  # PPO components
-
-from .blocks.misc import get_target_dim, get_default_steps, get_eval_steps
+from networks.FT_net.fourier_net import FourierNet  # Assuming OFENet is implemented and imported from another module
+from networks.policy_net.PPO import GaussianActor, CriticV, PPO, RolloutBuffer  # PPO components
+from blocks.maml_config import Metaworld
 
 
 class New_maml_agent(nn.Module):
-    def __init__(self, env, config):
+    def __init__(self, env, agent_config, maml_config):
         super(New_maml_agent, self).__init__()
         self.env = env
         self.eval_env = env #将评估环境设置为与训练环境一样
 
-        self.args = config
+        self.args = agent_config
         #从环境中提取状态和动作空间的维度
         state_dim = env.observation_space.shape[0]
         action_dim = env.action_space.shape[0]
         max_action = float(env.action_space.high[0])
         #初始化回放缓存区
-        self.replay_buffer = RolloutBuffer(obs_dim=state_dim, act_dim=action_dim, capacity=config.steps_per_epoch, gamma=config.discount, lam=config.lam)
+        # TODO: discount and lam?
+        self.replay_buffer = RolloutBuffer(obs_dim=state_dim, act_dim=action_dim, capacity=agent_config.steps_per_epoch, gamma=agent_config.discount, lam=agent_config.lam)
         
         #设置特征提取器的参数
         self.extractor_kwargs = {
             "dim_state": state_dim, 
             "dim_action": action_dim, 
             "dim_output": 11,
-            "dim_discretize": config.dim_discretize, 
-            "fourier_type": config.fourier_type, 
-            "discount": config.discount, 
-            "use_projection": config.use_projection, 
-            "projection_dim": config.projection_dim, 
-            "cosine_similarity": config.cosine_similarity,
-            "normalizer": config.normalizer
+            "dim_discretize": agent_config.dim_discretize, 
+            "total_units": 240,
+            "num_layers": 6,
+            "batchnorm": True,
+            "fourier_type": agent_config.fourier_type, 
+            "discount": agent_config.discount, 
+            "projection_dim": agent_config.projection_dim, 
+            "cosine_similarity": agent_config.cosine_similarity,
+            "normalizer": agent_config.normalizer
         }
-        #初始化特征提取器
-        self.extractor = OFENet(**self.extractor_kwargs, skip_action_branch = False)
-        self.target_extractor = OFENet(**self.extractor_kwargs, skip_action_branch = False)
-        self.soft_update(self.target_extractor, self.extractor, tau=1)
 
-        #Use learn2learn to wrap the extractor network for future updates
-        self.extractor = l2l.algorithms.MAML(self.extractor, lr=config.lr, first_order=False) # TODO: lr
-        self.target_extractor = l2l.algorithms.MAML(self.target_extractor, lr=config.lr, first_order=False)
+        #Initialize the extractor and target extractor network
+        self.extractor = FourierNet(**self.extractor_kwargs, skip_action_branch=False)
+        self.target_extractor = FourierNet(**self.extractor_kwargs, skip_action_branch = False)
+        self.soft_update(self.target_extractor, self.extractor, tau=1)
 
         self.actor = GaussianActor(
             self.extractor.dim_state_features,
-            action_dim, max_action, actor_units=(64, 64)).to(device)
+            action_dim, max_action, layer_units=(64, 64))
         self.critic = CriticV(
-            self.extractor.dim_state_features, critic_units=(64, 64)).to(device)
+            self.extractor.dim_state_features, units=(64, 64))
         
-        self.critic = l2l.algorithms.MAML(self.critic, lr = config.lr, first_order=False) # TODO: lr
+        self.critic = l2l.algorithms.MAML(self.critic, lr = 1e-3, first_order=False)
 
         #初始化PPO策略网络
         self.policy = PPO(
             feature_extractor = self.extractor,
             actor=self.actor,
             critic=self.critic,
-            pi_lr=3e-4,
-            vf_lr=1e-3,
+            pi_lr=3e-4, # adapt learning rate for actor
+            vf_lr=1e-3, # adapt learning rate for critic
             clip_ratio=0.2,
             batch_size=64,
             discount=0.99,
@@ -71,7 +70,7 @@ class New_maml_agent(nn.Module):
             gpu=0)
         
     #更新目标网络的参数，tau=1时为复制
-    def soft_update(target, source, tau = 1):
+    def soft_update(self, target, source, tau = 1):
         for target_param, source_param in zip(target.parameters(), source.parameters()):
             target_param.data.copy_((1 - tau) * target_param.data + tau * source_param.data)
 
@@ -95,22 +94,21 @@ class New_maml_agent(nn.Module):
         else:
             return action, logprob, distribution.entropy().sum(1), distribution
 
-    def get_deterministic_action(self, x):
-        x = self.extractor(x)
-        action_mean = self.actor.mean_action(x)
-        return action_mean
 
-    def adapt(self, num_steps, information, config, lifetime_buffer, mean_reward_for_baseline, device='cpu'):
+    def adapt(self, num_steps, information, config:Metaworld, lifetime_buffer, mean_reward_for_baseline, device):
 
-        max_steps = self.args.steps = get_default_steps(self.args.env)
-        epochs = max_steps // self.args.steps_per_epoch + 1
+        max_steps = config.num_env_steps_per_adaptation_update
+        epochs = max_steps // self.args.steps_per_epoch + 1 
 
         total_steps = self.args.steps_per_epoch*epochs
         steps_per_epoch = self.args.steps_per_epoch
 
-        batch_size = self.args.batch_size
+        batch_size = self.args.batch_size 
 
         state, _ = self.env.reset()
+
+        episode_return = 0
+        episode_timesteps = 0
 
         print("Initialization: I am collecting samples randomly!")
         round = 0
@@ -125,7 +123,7 @@ class New_maml_agent(nn.Module):
             episode_timesteps += 1
 
             done_flag = done
-            if episode_timesteps == self.env.spec.max_episode_steps:
+            if episode_timesteps == config.max_episode_steps:
                 done_flag = False
 
             self.replay_buffer.add(obs=state, act=action, obs2=next_state, rew=reward, done=done_flag, val=0, logp=0)
@@ -137,17 +135,19 @@ class New_maml_agent(nn.Module):
                 episode_return = 0
 
         self.policy.clone_for_adaptation() # clone extractor and critic network
+        self.policy.set_optimizers()
 
         print("Pretrain: I am pretraining the extractor!")
         pretrain_step = 0
-        for i in range(self.args.pre_train_step):
+        for i in range(self.args.pre_train_step): 
             print("Pretrain Step: ", pretrain_step)
             pretrain_step += 1
             sample_states, sample_actions, sample_next_states, _, sample_dones = self.replay_buffer.sample(batch_size=self.args.batch_size)
             sample_next_actions, _ = self.policy.get_action(sample_next_states)
 
             #adapt extractor
-            pred_loss = self.policy.extractor_loss_for_adaptation(self.target_extractor, sample_states, sample_actions, sample_next_states, sample_next_actions, sample_dones)
+            pred_loss = self.policy.extractor_loss_for_adaptation(self.extractor, self.target_extractor, sample_states, sample_actions, sample_next_states, sample_next_actions, sample_dones)
+            
             self.policy.extractor_adapt(pred_loss)
 
 
@@ -181,7 +181,7 @@ class New_maml_agent(nn.Module):
             done_flag = done
 
             # # done is valid, when an episode is not finished by max_step.
-            # if episode_timesteps == self.env.spec.max_episode_steps:
+            # if episode_timesteps == config.max_episode_steps:
             #     done_flag = False
 
             self.replay_buffer.add(obs=state, act=action, obs2=next_state, rew=reward, done=done_flag, val=v_t, logp=logp)
@@ -195,7 +195,7 @@ class New_maml_agent(nn.Module):
             if info['success'] == 1.0:
                 succeeded_in_episode_lifetime = True
 
-            if done or (episode_timesteps == self.env.spec.max_episode_steps) or (cur_steps + 1) % steps_per_epoch == 0:
+            if done or (episode_timesteps == config.max_episode_steps) or (cur_steps + 1) % steps_per_epoch == 0:
                 # if trajectory didn't reach terminal state, bootstrap value target
                 last_val = 0 if done else self.policy.get_val(state)
                 self.replay_buffer.finish_path(last_val)
@@ -211,7 +211,7 @@ class New_maml_agent(nn.Module):
                     episodes_successes_lifetime.append(0.0)
 
 
-            update_every = self.args.update_every
+            update_every = self.args.update_every 
             #Update the extractor every update_every steps
             if self.args.gin is not None and cur_steps % update_every == 0: 
                 for _ in range(update_every):
@@ -225,11 +225,13 @@ class New_maml_agent(nn.Module):
 
             #Update the target network every target_update_freq steps
             if self.args.gin is not None and cur_steps % self.args.target_update_freq == 0: 
-                self.soft_update(self.target_extractor, self.extractor, self.args.tau)
+                self.soft_update(self.target_extractor, self.extractor, self.args.tau) 
 
 
             if (cur_steps + 1) % steps_per_epoch == 0: #Train the policy every steps_per_epoch steps
                 self.policy.train(self.replay_buffer)
+                
+
 
         lifetime_buffer.episodes_returns=lifetime_buffer.episodes_returns+episodes_returns_lifetime
         lifetime_buffer.episodes_successes =lifetime_buffer.episodes_successes+ episodes_successes_lifetime
@@ -241,8 +243,8 @@ class New_maml_agent(nn.Module):
         
         return information
 
-    def evaluate_extractor_and_critic(self):
-        total_eval_steps = get_eval_steps(self.args.env) # TODO: 在misc中实现这个函数，查参数用
+    def evaluate_extractor_and_critic(self, config:Metaworld):
+        total_eval_steps = config.num_env_steps_for_estimating_maml_loss
         batch_size = self.args.batch_size
 
         state, _ = self.eval_env.reset() 
@@ -263,7 +265,7 @@ class New_maml_agent(nn.Module):
             self.replay_buffer.add(obs=state, act=action, obs2=next_state, rew=reward, done=done_flag, val=v_t, logp=logp)
             state = next_state
 
-            if done or (episode_timesteps == self.env.spec.max_episode_steps) or (cur_steps + 1) % steps_per_epoch == 0: # TODO: steps_per_epoch参数设置
+            if done or (episode_timesteps == config.max_episode_steps):
                 # if trajectory didn't reach terminal state, bootstrap value target
                 last_val = 0 if done else self.policy.get_val(state)
                 self.replay_buffer.finish_path(last_val)
@@ -271,7 +273,7 @@ class New_maml_agent(nn.Module):
                 episode_timesteps = 0
                 episode_return = 0
 
-        evaluate_every = self.args.evaluate_every
+        evaluate_every = self.args.evaluate_every # TODO: 添加参数 evaluate_every
         for _ in range(evaluate_every):
             sample_states, sample_actions, sample_next_states, _, sample_dones = self.replay_buffer.sample(
                 batch_size=batch_size)

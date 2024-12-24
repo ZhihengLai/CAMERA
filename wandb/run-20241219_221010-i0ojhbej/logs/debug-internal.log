@@ -1,0 +1,11 @@
+{"time":"2024-12-19T22:10:10.649114841+08:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2024-12-19T22:10:10.64912405+08:00","level":"INFO","msg":"created symlink","path":"/home/laizhiheng/my-project/camera/CAMERA/maml/my_project/wandb/run-20241219_221010-i0ojhbej/logs/debug-core.log"}
+{"time":"2024-12-19T22:10:10.820853717+08:00","level":"INFO","msg":"created new stream","id":"i0ojhbej"}
+{"time":"2024-12-19T22:10:10.82092621+08:00","level":"INFO","msg":"stream: started","id":"i0ojhbej"}
+{"time":"2024-12-19T22:10:10.820988271+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"i0ojhbej"}
+{"time":"2024-12-19T22:10:10.821049776+08:00","level":"INFO","msg":"sender: started","stream_id":"i0ojhbej"}
+{"time":"2024-12-19T22:10:10.821093906+08:00","level":"INFO","msg":"handler: started","stream_id":"i0ojhbej"}
+{"time":"2024-12-19T22:10:11.659435663+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-12-19T22:13:37.637783161+08:00","level":"INFO","msg":"stream: closing","id":"i0ojhbej"}
+{"time":"2024-12-19T22:13:37.64351848+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2024-12-19T22:13:37.645164424+08:00","level":"INFO","msg":"Stopped system monitor"}

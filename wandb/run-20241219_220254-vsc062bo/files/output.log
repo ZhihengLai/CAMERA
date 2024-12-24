@@ -1,0 +1,46 @@
+MAML: Device is set to :cuda:0
+the name is :  ML1
+the name of training task is :  <SawyerReachEnvV2 instance>
+Environment: <SawyerReachEnvV2 instance>
+Environment spec: None
+2024-12-19 22:02:59,606	INFO worker.py:1821 -- Started a local Ray instance.
+[36m(pid=5603)[0m
+[36m(pid=5603)[0m PPO: Device set to : NVIDIA GeForce RTX 3050 Ti Laptop GPU
+[36m(inner_loop pid=5603)[0m Environment: <ClipAction<SawyerReachEnvV2 instance>>
+[36m(inner_loop pid=5603)[0m Environment spec: None
+[36m(inner_loop pid=5603)[0m Initialization: I am collecting samples randomly!
+[36m(inner_loop pid=5603)[0m Collect Round:  0
+[36m(inner_loop pid=5603)[0m Environment: <ClipAction<SawyerReachEnvV2 instance>>
+[36m(inner_loop pid=5603)[0m Environment spec: None
+[36m(inner_loop pid=5603)[0m Initialization: I am collecting samples randomly!
+[36m(inner_loop pid=5603)[0m Collect Round:  0
+[36m(inner_loop pid=5603)[0m Environment: <ClipAction<SawyerReachEnvV2 instance>>
+[36m(inner_loop pid=5603)[0m Environment spec: None
+[36m(inner_loop pid=5603)[0m Initialization: I am collecting samples randomly!
+[36m(inner_loop pid=5603)[0m Collect Round:  0
+[36m(inner_loop pid=5603)[0m Environment: <ClipAction<SawyerReachEnvV2 instance>>
+[36m(inner_loop pid=5603)[0m Environment spec: None
+[36m(inner_loop pid=5603)[0m Initialization: I am collecting samples randomly!
+[36m(inner_loop pid=5603)[0m Collect Round:  0
+[36m(inner_loop pid=5603)[0m Environment: <ClipAction<SawyerReachEnvV2 instance>>
+[36m(inner_loop pid=5603)[0m Environment spec: None
+[36m(inner_loop pid=5603)[0m Initialization: I am collecting samples randomly!
+[36m(inner_loop pid=5603)[0m Collect Round:  0
+[36m(inner_loop pid=5603)[0m Environment: <ClipAction<SawyerReachEnvV2 instance>>
+[36m(inner_loop pid=5603)[0m Environment spec: None
+[36m(inner_loop pid=5603)[0m Initialization: I am collecting samples randomly!
+[36m(inner_loop pid=5603)[0m Collect Round:  0
+[36m(inner_loop pid=5603)[0m Environment: <ClipAction<SawyerReachEnvV2 instance>>
+[36m(inner_loop pid=5603)[0m Environment spec: None
+[36m(inner_loop pid=5603)[0m Initialization: I am collecting samples randomly!
+[36m(inner_loop pid=5603)[0m Collect Round:  0
+[36m(inner_loop pid=5603)[0m Environment: <ClipAction<SawyerReachEnvV2 instance>>
+[36m(inner_loop pid=5603)[0m Environment spec: None
+[36m(inner_loop pid=5603)[0m Initialization: I am collecting samples randomly!
+[36m(inner_loop pid=5603)[0m Collect Round:  0
+[36m(inner_loop pid=5603)[0m Environment: <ClipAction<SawyerReachEnvV2 instance>>
+[36m(inner_loop pid=5603)[0m Environment spec: None
+[36m(inner_loop pid=5603)[0m Initialization: I am collecting samples randomly!
+[36m(inner_loop pid=5603)[0m Collect Round:  0
+[36m(inner_loop pid=5603)[0m Environment: <ClipAction<SawyerReachEnvV2 instance>>
+[36m(inner_loop pid=5603)[0m Environment spec: None

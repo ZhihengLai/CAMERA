@@ -1,0 +1,10 @@
+{"time":"2024-12-19T21:58:54.009026209+08:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2024-12-19T21:58:54.00903616+08:00","level":"INFO","msg":"created symlink","path":"/home/laizhiheng/my-project/camera/CAMERA/maml/my_project/wandb/run-20241219_215853-0q95gjm9/logs/debug-core.log"}
+{"time":"2024-12-19T21:58:54.185789547+08:00","level":"INFO","msg":"created new stream","id":"0q95gjm9"}
+{"time":"2024-12-19T21:58:54.185820841+08:00","level":"INFO","msg":"stream: started","id":"0q95gjm9"}
+{"time":"2024-12-19T21:58:54.1859255+08:00","level":"INFO","msg":"handler: started","stream_id":"0q95gjm9"}
+{"time":"2024-12-19T21:58:54.186716086+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"0q95gjm9"}
+{"time":"2024-12-19T21:58:54.187004334+08:00","level":"INFO","msg":"sender: started","stream_id":"0q95gjm9"}
+{"time":"2024-12-19T21:58:54.974870796+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-12-19T22:01:41.114138762+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/0q95gjm9/file_stream\": EOF"}
+{"time":"2024-12-19T22:02:11.207163026+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/2154902219-shanghai-jiao-tong-university/project_name/0q95gjm9/file_stream\": EOF"}

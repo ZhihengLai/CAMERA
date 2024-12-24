@@ -1,0 +1,91 @@
+MAML: Device is set to :cuda:0
+the name is :  ML1
+the name of training task is :  <SawyerReachEnvV2 instance>
+2024-12-19 19:50:48,135	INFO worker.py:1821 -- Started a local Ray instance.
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: 609c07ae655a480400166e811542bc5b8af9436c01000000 Worker ID: b8e03ca527100f7e59952c3e84b548c964a5ecb63556d484ad0d1c16 Node ID: fd1bbb13e597cf193a0afc8326a3d6fc49cc38848738bc141f0fc6aa Worker IP address: 10.180.80.122 Worker port: 44736 Worker PID: 28610 Worker exit type: SYSTEM_ERROR Worker exit detail: The leased worker has unrecoverable failure. Worker is requested to be destroyed when it is returned. RPC Error message: Socket closed; RPC Error details:
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: eca164b47487a0770ff8e9e535d67044460ba65401000000 Worker ID: 060ce694d8294fe8b5e1162a30664575b6c9eeb13a0381903b6bdecd Node ID: fd1bbb13e597cf193a0afc8326a3d6fc49cc38848738bc141f0fc6aa Worker IP address: 10.180.80.122 Worker port: 45832 Worker PID: 28615 Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: 0991d16ad9944e5ed788b275e205a831ac223ad801000000 Worker ID: dee899919c6170817526c9a951c0ed832a30369973c9aeeee60825a4 Node ID: fd1bbb13e597cf193a0afc8326a3d6fc49cc38848738bc141f0fc6aa Worker IP address: 10.180.80.122 Worker port: 46516 Worker PID: 28612 Worker exit type: SYSTEM_ERROR Worker exit detail: The leased worker has unrecoverable failure. Worker is requested to be destroyed when it is returned. RPC Error message: Socket closed; RPC Error details: [32m [repeated 2x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: 6439c6902f4704b45f4e941183bee61de9fe12e601000000 Worker ID: d8c6a6ee85ea3bac1847877fedb2b1727c3d1c35c931c135edb91b25 Node ID: fd1bbb13e597cf193a0afc8326a3d6fc49cc38848738bc141f0fc6aa Worker IP address: 10.180.80.122 Worker port: 45524 Worker PID: 28609 Worker exit type: SYSTEM_ERROR Worker exit detail: The leased worker has unrecoverable failure. Worker is requested to be destroyed when it is returned. RPC Error message: Socket closed; RPC Error details:
+[33m(raylet)[0m [2024-12-19 19:52:04,875 E 28473 28473] (raylet) node_manager.cc:3069: 16 Workers (tasks / actors) killed due to memory pressure (OOM), 0 Workers crashed due to other reasons at node (ID: fd1bbb13e597cf193a0afc8326a3d6fc49cc38848738bc141f0fc6aa, IP: 10.180.80.122) over the last time period. To see more information about the Workers killed on this node, use `ray logs raylet.out -ip 10.180.80.122`
+[33m(raylet)[0m
+[33m(raylet)[0m Refer to the documentation on how to address the out of memory issue: https://docs.ray.io/en/latest/ray-core/scheduling/ray-oom-prevention.html. Consider provisioning more memory on this node or reducing task parallelism by requesting more CPUs per task. To adjust the kill threshold, set the environment variable `RAY_memory_usage_threshold` when starting Ray. To disable worker killing, set the environment variable `RAY_memory_monitor_refresh_ms` to zero.
+[36m(pid=30595)[0m Traceback (most recent call last):
+[36m(pid=30595)[0m   File "<string>", line 36, in <module>
+[36m(pid=30595)[0m BrokenPipeError: [Errno 32] Broken pipe
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: 6812c3692a41a04d637983a6bf428a4aa8a67e9201000000 Worker ID: fdcda8d0bfd6faed25eb18517bccc37ccbfc8bebfa39b168d76ecc1b Node ID: fd1bbb13e597cf193a0afc8326a3d6fc49cc38848738bc141f0fc6aa Worker IP address: 10.180.80.122 Worker port: 46084 Worker PID: 28613 Worker exit type: SYSTEM_ERROR Worker exit detail: The leased worker has unrecoverable failure. Worker is requested to be destroyed when it is returned. RPC Error message: Socket closed; RPC Error details:
+[36m(pid=28604)[0m
+[33m(raylet)[0m [2024-12-19 19:52:23,197 E 31177 31177] gcs_rpc_client.h:179: Failed to connect to GCS at address 10.180.80.122:52175 within 5 seconds.
+[36m(pid=28596)[0m
+[36m(pid=28611)[0m
+[36m(pid=28598)[0m
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: e1b5a0b25c9b30a53bfc787e751ac975a048ee7f01000000 Worker ID: 1ff21160db39225b0f0bc9e173dd07c54ed4146c45c4ad17403f9147 Node ID: fd1bbb13e597cf193a0afc8326a3d6fc49cc38848738bc141f0fc6aa Worker IP address: 10.180.80.122 Worker port: 45932 Worker PID: 28606 Worker exit type: SYSTEM_ERROR Worker exit detail: The leased worker has unrecoverable failure. Worker is requested to be destroyed when it is returned. RPC Error message: Socket closed; RPC Error details:
+[36m(pid=28601)[0m
+[36m(pid=28603)[0m
+[36m(pid=31243)[0m Traceback (most recent call last):
+[36m(pid=31243)[0m   File "<string>", line 36, in <module>
+[36m(pid=31243)[0m BrokenPipeError: [Errno 32] Broken pipe
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: 35ba7ddd6db011fd3b9b1e052e6f7d404680144c01000000 Worker ID: 969a8bea35b59487a3ca2c91ea9d9bb7e9d82877ed28573dfb954f1c Node ID: fd1bbb13e597cf193a0afc8326a3d6fc49cc38848738bc141f0fc6aa Worker IP address: 10.180.80.122 Worker port: 45560 Worker PID: 28596 Worker exit type: SYSTEM_ERROR Worker exit detail: The leased worker has unrecoverable failure. Worker is requested to be destroyed when it is returned. RPC Error message: Socket closed; RPC Error details:
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: 54fef3d4cb77c4f854a133be23d70ac04859552e01000000 Worker ID: e58f8425a73a5f09733de6fe214e291b003f0719abb149228c1ffca3 Node ID: fd1bbb13e597cf193a0afc8326a3d6fc49cc38848738bc141f0fc6aa Worker IP address: 10.180.80.122 Worker port: 45680 Worker PID: 28603 Worker exit type: SYSTEM_ERROR Worker exit detail: The leased worker has unrecoverable failure. Worker is requested to be destroyed when it is returned. RPC Error message: Socket closed; RPC Error details: [32m [repeated 2x across cluster][0m
+[36m(pid=28611)[0m PPO: Device set to : cpu
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: 33d8ea0cd9e9369870f4811563256121cf6f6c6d01000000 Worker ID: 3c3640eaa79b049131d7bdf5e434eb791a9d4f391e05ad9d1bf8a95a Node ID: fd1bbb13e597cf193a0afc8326a3d6fc49cc38848738bc141f0fc6aa Worker IP address: 10.180.80.122 Worker port: 46240 Worker PID: 28611 Worker exit type: SYSTEM_ERROR Worker exit detail: The leased worker has unrecoverable failure. Worker is requested to be destroyed when it is returned. RPC Error message: Socket closed; RPC Error details:
+[36m(inner_loop pid=28598)[0m Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.
+[36m(inner_loop pid=28598)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 460, in deserialize_objects
+[36m(inner_loop pid=28598)[0m     obj = self._deserialize_object(data, metadata, object_ref)
+[36m(inner_loop pid=28598)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 317, in _deserialize_object
+[36m(inner_loop pid=28598)[0m     return self._deserialize_msgpack_data(data, metadata_fields)
+[36m(inner_loop pid=28598)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 272, in _deserialize_msgpack_data
+[36m(inner_loop pid=28598)[0m     python_objects = self._deserialize_pickle5_data(pickle5_data)
+[36m(inner_loop pid=28598)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 262, in _deserialize_pickle5_data
+[36m(inner_loop pid=28598)[0m     obj = pickle.loads(in_band)
+[36m(inner_loop pid=28598)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/storage.py", line 414, in _load_from_bytes
+[36m(inner_loop pid=28598)[0m     return torch.load(io.BytesIO(b), weights_only=False)
+[36m(inner_loop pid=28598)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1114, in load
+[36m(inner_loop pid=28598)[0m     return _legacy_load(
+[36m(inner_loop pid=28598)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1348, in _legacy_load
+[36m(inner_loop pid=28598)[0m     result = unpickler.load()
+[36m(inner_loop pid=28598)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1281, in persistent_load
+[36m(inner_loop pid=28598)[0m     obj = restore_location(obj, location)
+[36m(inner_loop pid=28598)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 414, in default_restore_location
+[36m(inner_loop pid=28598)[0m     result = fn(storage, location)
+[36m(inner_loop pid=28598)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 391, in _deserialize
+[36m(inner_loop pid=28598)[0m     device = _validate_device(location, backend_name)
+[36m(inner_loop pid=28598)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 364, in _validate_device
+[36m(inner_loop pid=28598)[0m     raise RuntimeError(f'Attempting to deserialize object on a {backend_name.upper()} '
+[36m(inner_loop pid=28598)[0m RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.
+[36m(inner_loop pid=28598)[0m Traceback (most recent call last):
+[36m(inner_loop pid=28604)[0m Traceback (most recent call last):
+[33m(raylet)[0m [2024-12-19 19:53:03,347 E 32637 32637] gcs_rpc_client.h:179: Failed to connect to GCS at address 10.180.80.122:52175 within 5 seconds.
+[36m(inner_loop pid=28604)[0m Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.
+[36m(inner_loop pid=28604)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 460, in deserialize_objects
+[36m(inner_loop pid=28604)[0m     obj = self._deserialize_object(data, metadata, object_ref)
+[36m(inner_loop pid=28604)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 317, in _deserialize_object
+[36m(inner_loop pid=28604)[0m     return self._deserialize_msgpack_data(data, metadata_fields)
+[36m(inner_loop pid=28604)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 272, in _deserialize_msgpack_data
+[36m(inner_loop pid=28604)[0m     python_objects = self._deserialize_pickle5_data(pickle5_data)
+[36m(inner_loop pid=28604)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/ray/_private/serialization.py", line 262, in _deserialize_pickle5_data
+[36m(inner_loop pid=28604)[0m     obj = pickle.loads(in_band)
+[36m(inner_loop pid=28604)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/storage.py", line 414, in _load_from_bytes
+[36m(inner_loop pid=28604)[0m     return torch.load(io.BytesIO(b), weights_only=False)
+[36m(inner_loop pid=28604)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1114, in load
+[36m(inner_loop pid=28604)[0m     return _legacy_load(
+[36m(inner_loop pid=28604)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1348, in _legacy_load
+[36m(inner_loop pid=28604)[0m     result = unpickler.load()
+[36m(inner_loop pid=28604)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 1281, in persistent_load
+[36m(inner_loop pid=28604)[0m     obj = restore_location(obj, location)
+[36m(inner_loop pid=28604)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 414, in default_restore_location
+[36m(inner_loop pid=28604)[0m     result = fn(storage, location)
+[36m(inner_loop pid=28604)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 391, in _deserialize
+[36m(inner_loop pid=28604)[0m     device = _validate_device(location, backend_name)
+[36m(inner_loop pid=28604)[0m   File "/home/laizhiheng/miniconda3/envs/maml/lib/python3.10/site-packages/torch/serialization.py", line 364, in _validate_device
+[36m(inner_loop pid=28604)[0m     raise RuntimeError(f'Attempting to deserialize object on a {backend_name.upper()} '
+[36m(inner_loop pid=28604)[0m RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.
+[36m(pid=28604)[0m PPO: Device set to : cpu[32m [repeated 2x across cluster][0m
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: 85f1768c7e3488d71ae6ee0426458428939a326401000000 Worker ID: 99c894cd37512142ab2732af9cb08cc6766c8f0a4b8bd2abd0418d37 Node ID: fd1bbb13e597cf193a0afc8326a3d6fc49cc38848738bc141f0fc6aa Worker IP address: 10.180.80.122 Worker port: 45444 Worker PID: 28604 Worker exit type: SYSTEM_ERROR Worker exit detail: The leased worker has unrecoverable failure. Worker is requested to be destroyed when it is returned. RPC Error message: Socket closed; RPC Error details:
+[33m(raylet)[0m [2024-12-19 19:53:15,398 E 28473 28473] (raylet) node_manager.cc:3069: 26 Workers (tasks / actors) killed due to memory pressure (OOM), 0 Workers crashed due to other reasons at node (ID: fd1bbb13e597cf193a0afc8326a3d6fc49cc38848738bc141f0fc6aa, IP: 10.180.80.122) over the last time period. To see more information about the Workers killed on this node, use `ray logs raylet.out -ip 10.180.80.122`
+[33m(raylet)[0m
+[33m(raylet)[0m Refer to the documentation on how to address the out of memory issue: https://docs.ray.io/en/latest/ray-core/scheduling/ray-oom-prevention.html. Consider provisioning more memory on this node or reducing task parallelism by requesting more CPUs per task. To adjust the kill threshold, set the environment variable `RAY_memory_usage_threshold` when starting Ray. To disable worker killing, set the environment variable `RAY_memory_monitor_refresh_ms` to zero.
+[36m(pid=29863)[0m
+[36m(pid=29855)[0m
+[36m(pid=29870)[0m
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: b75654b19174a07f05b17ead702df32f70784bac01000000 Worker ID: a5d796b7c9906a1333f38d14831b54c767cb8a5dda320cfbb74ef27c Node ID: fd1bbb13e597cf193a0afc8326a3d6fc49cc38848738bc141f0fc6aa Worker IP address: 10.180.80.122 Worker port: 46136 Worker PID: 28598 Worker exit type: SYSTEM_ERROR Worker exit detail: The leased worker has unrecoverable failure. Worker is requested to be destroyed when it is returned. RPC Error message: recvmsg:Connection reset by peer; RPC Error details:
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: f78aec25bdd12481194dc1812942d1ab7f7cf9af01000000 Worker ID: 7d693adb3424dbbe0f45337ec1021eb1e136ead0c597ea31ecdfad3f Node ID: fd1bbb13e597cf193a0afc8326a3d6fc49cc38848738bc141f0fc6aa Worker IP address: 10.180.80.122 Worker port: 46086 Worker PID: 29870 Worker exit type: SYSTEM_ERROR Worker exit detail: The leased worker has unrecoverable failure. Worker is requested to be destroyed when it is returned. RPC Error message: Socket closed; RPC Error details:

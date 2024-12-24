@@ -10,18 +10,22 @@ class Metaworld:
 
         self.seeding=False
         self.seed=1
-        self.device='cpu'
+        self.device='auto'
 
         self.num_outer_loop_updates=4000
         self.num_inner_loops_per_update=30  #num of tasks considered for each outer loop update
 
-        self.num_adaptation_updates_in_inner_loop=2 
+        self.num_adaptation_updates_in_inner_loop=1
         self.num_env_steps_per_adaptation_update=2000 
         self.num_env_steps_for_estimating_maml_loss=4000
-        self.num_lifetime_steps=self.num_adaptation_updates_in_inner_loop * self.num_env_steps_per_adaptation_update + self.num_env_steps_for_estimating_maml_loss
+        self.num_lifetime_steps=self.num_env_steps_per_adaptation_update + self.num_env_steps_for_estimating_maml_loss
 
         self.maml_agent_lr=5e-4 
         self.maml_agent_epsilon=1e-5
+
+        # 新增的参数
+        self.maml_critic_lr=5e-4
+        self.maml_extractor_lr=5e-4
 
         self.adaptation_lr= 7e-2 
         self.adaptation_gamma=0.995 

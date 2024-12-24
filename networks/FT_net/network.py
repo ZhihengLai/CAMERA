@@ -10,13 +10,9 @@ from .blocks import DensenetBlock, MLPBlock
 @gin.configurable
 class OFENet(nn.Module):
     def __init__(self, dim_state, dim_action, dim_output, dim_discretize, 
-                 total_units, num_layers, batchnorm, 
-                 fourier_type, discount,  
-                 use_projection=True, projection_dim=256, 
-                 cosine_similarity=True, normalizer="batch",
+                 total_units, num_layers, batchnorm, normalizer="batch",
                  activation=nn.ReLU(), block="densenet",
-                 trainable=True, name='FeatureNet',
-                 gpu = 0,
+                 trainable=False, gpu = 0,
                  skip_action_branch=False):
         super(OFENet, self).__init__()
         self._skip_action_branch = skip_action_branch
@@ -32,7 +28,7 @@ class OFENet(nn.Module):
         self.dim_output = dim_output
 
         self.device = torch.device(f"cuda:{gpu}" if gpu >= 0 and torch.cuda.is_available() else "cpu")
-        # self.device = torch.device("cpu")
+
         if block not in ["densenet", "mlp", "mlp_cat"]:
             raise ValueError(f"Invalid block: {block}")
 
@@ -56,37 +52,6 @@ class OFENet(nn.Module):
         self.end = int(dim_discretize * 0.5 + 1)
         self.prediction = Prediction(dim_input=action_blocks[-1].out_features , dim_discretize=self.end, dim_state=dim_state, normalizer=normalizer)
 
-        if use_projection:
-            self.projection = Projection(self.end, self.dim_state, output_dim=projection_dim, normalizer=normalizer)
-            self.projection2 = Projection2(output_dim=projection_dim, normalizer=normalizer)
-
-        self.fourier_type = fourier_type
-        self.use_projection = use_projection
-        self.projection_dim = projection_dim
-        self.cosine_similarity = cosine_similarity
-
-        if trainable:
-            self.aux_optimizer = optim.Adam(self.parameters(), lr=3e-4)
-        else:
-            self.aux_optimizer = None
-
-        ratio = 2 * math.pi / dim_discretize
-        con = torch.tensor([k * ratio for k in range(self.end)], device=self.device) #something is wrong about GPU
-        self.Gamma_re = discount * torch.diag(torch.cos(con))
-        self.Gamma_im = -discount * torch.diag(torch.sin(con))
-
-        ratio2 = 1.0 / (2 * math.pi * dim_discretize)
-        con_re = torch.tensor([1] + [2 * math.cos(k * ratio) for k in range(1, self.end - 1)] + [-1], device=self.device)
-        self.con_re = ratio2 * con_re.unsqueeze(0)
-        con_im = torch.tensor([0] + [-2 * math.sin(k * ratio) for k in range(1, self.end - 1)] + [0], device=self.device)
-        self.con_im = ratio2 * con_im.unsqueeze(0)
-
-        # if fourier_type == 'dft':
-        #     ratio = 2 * math.pi * (dim_discretize - 1) / dim_discretize
-        #     con = torch.tensor([k * ratio for k in range(dim_discretize)], device=f'cuda:{self._gpu}')
-        #     self.con_re = torch.cos(con)
-        #     self.con_im = torch.sin(con)
-        #     self.coef = pow(discount, dim_discretize - 1)
 
     def forward(self, states, actions=None):
         batch_size = states.size(0)
@@ -135,112 +100,6 @@ class OFENet(nn.Module):
 
         return features
 
-    def loss(self, y_target, y, target_model=None):
-        trun = 15
-
-        if self.use_projection and target_model is not None:
-            y_target2 = target_model.projection(y_target[:, trun:self.end-trun, :])
-            _ = target_model.projection2(y_target2)
-            y2 = self.projection(y[:, trun:self.end-trun, :])
-            y2 = self.projection2(y2)
-
-        if self.cosine_similarity:
-            loss_fun = nn.CosineSimilarity(dim=-1)
-            loss1 = torch.mean(loss_fun(y_target[:, :trun, :], y[:, :trun, :]))
-            loss2 = torch.mean(loss_fun(y_target2, y2))
-            loss3 = torch.mean(loss_fun(y_target[:, self.end-trun:self.end, :], y[:, self.end-trun:self.end, :]))
-
-            loss = loss1 + loss2 + loss3
-        else:
-            loss = nn.functional.mse_loss(y_target2, y2)
-
-        return loss
-
-    # def train_model(self, target_model, states, actions, next_states, next_actions, dones, Hth_states=None):
-        
-    #     dones = dones.unsqueeze(-1).repeat(1, self.end, self.dim_state).float()
-    #     O = next_states[:, :self.dim_state].unsqueeze(1).repeat(1, self.end, 1)
-    #     predicted_re, predicted_im = self(states, actions)
-    #     next_predicted_re, next_predicted_im = target_model(next_states, next_actions)
-
-    #     if self.fourier_type == 'dtft':
-    #         with torch.no_grad():
-    #             y_target_re = O + (torch.matmul(self.Gamma_re, next_predicted_re) - torch.matmul(self.Gamma_im, next_predicted_im)) * (1 - dones)
-    #         y_re = predicted_re
-    #         pred_re_loss = self.loss(y_target_re.detach(), y_re, target_model)
-    #         with torch.no_grad():
-    #             y_target_im = (torch.matmul(self.Gamma_im, next_predicted_re) + torch.matmul(self.Gamma_re, next_predicted_im)) * (1 - dones)
-    #         y_im = predicted_im
-    #         pred_im_loss = self.loss(y_target_im.detach(), y_im, target_model)
-
-    #     elif self.fourier_type == 'dft':
-    #         y_target_re = O - self.coef * torch.matmul(self.con_re.unsqueeze(-1), Hth_states.unsqueeze(1)) + \
-    #                       (torch.matmul(self.Gamma_re, next_predicted_re) - torch.matmul(self.Gamma_im, next_predicted_im)) * (1 - dones)
-    #         y_re = predicted_re
-    #         pred_re_loss = self.loss(y_target_re.detach(), y_re, target_model)
-
-    #         y_target_im = self.coef * torch.matmul(self.con_re.unsqueeze(-1), Hth_states.unsqueeze(1)) + \
-    #                       (torch.matmul(self.Gamma_im, next_predicted_re) + torch.matmul(self.Gamma_re, next_predicted_im)) * (1 - dones)
-    #         y_im = predicted_im
-    #         pred_im_loss = self.loss(y_target_im.detach(), y_im, target_model)
-
-    #     else:
-    #         raise ValueError(f"Invalid fourier_type: {self.fourier_type}")
-
-    #     pred_loss = pred_re_loss + pred_im_loss
-
-    #     self.aux_optimizer.zero_grad()
-    #     pred_loss.backward()
-    #     self.aux_optimizer.step()
-
-    #     if self.use_projection:
-    #         grads_proj = [p.grad for p in self.projection.parameters()]
-
-    #     grads_pred = [p.grad for p in self.prediction.parameters()]
-
-    #     return pred_loss, pred_re_loss, pred_im_loss, grads_proj, grads_pred
-    
-    def compute_loss(self, target_model, states, actions, next_states, next_actions, dones, Hth_states=None):
-        
-        dones = dones.unsqueeze(-1).repeat(1, self.end, self.dim_state).float()
-        O = next_states[:, :self.dim_state].unsqueeze(1).repeat(1, self.end, 1)
-        predicted_re, predicted_im = self(states, actions)
-        next_predicted_re, next_predicted_im = target_model(next_states, next_actions)
-
-        if self.fourier_type == 'dtft':
-            with torch.no_grad():
-                y_target_re = O + (torch.matmul(self.Gamma_re, next_predicted_re) - torch.matmul(self.Gamma_im, next_predicted_im)) * (1 - dones)
-            y_re = predicted_re
-            pred_re_loss = self.loss(y_target_re.detach(), y_re, target_model)
-            with torch.no_grad():
-                y_target_im = (torch.matmul(self.Gamma_im, next_predicted_re) + torch.matmul(self.Gamma_re, next_predicted_im)) * (1 - dones)
-            y_im = predicted_im
-            pred_im_loss = self.loss(y_target_im.detach(), y_im, target_model)
-
-        elif self.fourier_type == 'dft':
-            y_target_re = O - self.coef * torch.matmul(self.con_re.unsqueeze(-1), Hth_states.unsqueeze(1)) + \
-                          (torch.matmul(self.Gamma_re, next_predicted_re) - torch.matmul(self.Gamma_im, next_predicted_im)) * (1 - dones)
-            y_re = predicted_re
-            pred_re_loss = self.loss(y_target_re.detach(), y_re, target_model)
-
-            y_target_im = self.coef * torch.matmul(self.con_re.unsqueeze(-1), Hth_states.unsqueeze(1)) + \
-                          (torch.matmul(self.Gamma_im, next_predicted_re) + torch.matmul(self.Gamma_re, next_predicted_im)) * (1 - dones)
-            y_im = predicted_im
-            pred_im_loss = self.loss(y_target_im.detach(), y_im, target_model)
-
-        else:
-            raise ValueError(f"Invalid fourier_type: {self.fourier_type}")
-
-        pred_loss = pred_re_loss + pred_im_loss
-
-        return pred_loss
-
-
-    def save(self, save_dir):
-        torch.save(self.state_dict, save_dir)
-
-    def load(self, load_dir):
-        self.load_state_dict(torch.load(load_dir))
 
 def calculate_layer_units(state_dim, action_dim, ofe_block, total_units, num_layers):
     assert total_units % num_layers == 0

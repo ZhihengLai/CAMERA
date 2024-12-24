@@ -1,0 +1,9 @@
+{"time":"2024-12-20T14:13:45.283534322+08:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2024-12-20T14:13:45.283574791+08:00","level":"INFO","msg":"created symlink","path":"/home/laizhiheng/my-project/camera/CAMERA/maml/my_project/wandb/run-20241220_141345-p5tj6xvx/logs/debug-core.log"}
+{"time":"2024-12-20T14:13:45.449175848+08:00","level":"INFO","msg":"created new stream","id":"p5tj6xvx"}
+{"time":"2024-12-20T14:13:45.449218624+08:00","level":"INFO","msg":"stream: started","id":"p5tj6xvx"}
+{"time":"2024-12-20T14:13:45.44932218+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"p5tj6xvx"}
+{"time":"2024-12-20T14:13:45.449379127+08:00","level":"INFO","msg":"handler: started","stream_id":"p5tj6xvx"}
+{"time":"2024-12-20T14:13:45.449456939+08:00","level":"INFO","msg":"sender: started","stream_id":"p5tj6xvx"}
+{"time":"2024-12-20T14:13:45.93044709+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": EOF"}
+{"time":"2024-12-20T14:13:49.171698338+08:00","level":"INFO","msg":"Starting system monitor"}

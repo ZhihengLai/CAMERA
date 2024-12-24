@@ -5,7 +5,7 @@ import wandb
 import torchopt
 
 from torch.nn.utils import parameters_to_vector ,vector_to_parameters
-
+from maml_agent import New_maml_agent
 
 
 #################---------   ADAPTATION LOSS  ---------###############
@@ -260,14 +260,17 @@ def maml_actor_trpo_update(maml_agent, data_buffers, adapted_policies_states,  c
                     'maml entropy ': np.array(logs_dict['entropy']).mean(),
                     'maml aprox KL ' :  np.array(logs_dict['aprox KL']).mean() } , commit=False )
         
-def maml_critic_update(maml_critic, optimizer, meta_batch_size):
-    for p in maml_critic.parameters():
+def maml_critic_update(maml_agent:New_maml_agent, optimizer, meta_batch_size):
+    for p in maml_agent.policy.critic_original.parameters():
         p.grad.data.mul_(1.0 / meta_batch_size)
     optimizer.step()
 
-def maml_extractor_update(maml_extractor, optimizer, meta_batch_size):
+def maml_extractor_update(maml_agent:New_maml_agent, optimizer, meta_batch_size):
+    maml_extractor = maml_agent.extractor.ofe_net_original
     for p in maml_extractor.parameters():
         p.grad.data.mul_(1.0 / meta_batch_size)
     optimizer.step()
+
+    
 
 

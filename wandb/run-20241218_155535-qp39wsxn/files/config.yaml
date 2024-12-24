@@ -1,0 +1,78 @@
+_wandb:
+    value:
+        cli_version: 0.19.1
+        m: []
+        python_version: 3.10.14
+        t:
+            "1":
+                - 1
+                - 30
+                - 41
+                - 55
+            "2":
+                - 1
+                - 30
+                - 41
+                - 55
+            "3":
+                - 13
+                - 16
+                - 23
+                - 55
+            "4": 3.10.14
+            "5": 0.19.1
+            "8":
+                - 5
+            "12": 0.19.1
+            "13": linux-x86_64
+adaptation_gamma:
+    value: 0.995
+adaptation_lr:
+    value: 0.07
+benchmark_name:
+    value: ML1
+device:
+    value: auto
+env_name:
+    value: reach-v2
+maml_TRPO:
+    value:
+        cg_damping: 0.01
+        cg_iters: 10
+        line_search_backtrack_ratio: 0.6
+        line_search_max_steps: 10
+        max_kl: 0.001
+maml_agent_epsilon:
+    value: 1e-05
+maml_agent_gamma:
+    value: 0.995
+maml_agent_lr:
+    value: 0.0005
+maml_critic_lr:
+    value: 0.0005
+maml_extractor_lr:
+    value: 0.0005
+max_episode_steps:
+    value: 500
+num_adaptation_updates_in_inner_loop:
+    value: 1
+num_env_steps_for_estimating_maml_loss:
+    value: 4000
+num_env_steps_per_adaptation_update:
+    value: 2000
+num_epsiodes_of_validation:
+    value: 4
+num_inner_loops_per_update:
+    value: 30
+num_lifetime_steps:
+    value: 6000
+num_lifetimes_for_validation:
+    value: 120
+num_outer_loop_updates:
+    value: 4000
+rewards_target_mean_for_maml_agent:
+    value: 0.1
+seed:
+    value: 1
+seeding:
+    value: false
