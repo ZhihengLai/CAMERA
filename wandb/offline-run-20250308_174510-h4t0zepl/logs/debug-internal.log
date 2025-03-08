@@ -1,0 +1,14 @@
+{"time":"2025-03-08T17:45:10.49197952+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/autodl-fs/data/MAML-test/wandb/offline-run-20250308_174510-h4t0zepl/logs/debug-core.log"}
+{"time":"2025-03-08T17:45:10.626653071+08:00","level":"INFO","msg":"created new stream","id":"h4t0zepl"}
+{"time":"2025-03-08T17:45:10.626857647+08:00","level":"INFO","msg":"stream: started","id":"h4t0zepl"}
+{"time":"2025-03-08T17:45:10.626903129+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"h4t0zepl"}
+{"time":"2025-03-08T17:45:10.626932727+08:00","level":"INFO","msg":"sender: started","stream_id":"h4t0zepl"}
+{"time":"2025-03-08T17:45:10.627039683+08:00","level":"INFO","msg":"handler: started","stream_id":"h4t0zepl"}
+{"time":"2025-03-08T17:45:10.660043312+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-08T17:46:33.826281683+08:00","level":"INFO","msg":"stream: closing","id":"h4t0zepl"}
+{"time":"2025-03-08T17:46:33.826379099+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-08T17:46:33.82755584+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-08T17:46:33.827796248+08:00","level":"INFO","msg":"handler: closed","stream_id":"h4t0zepl"}
+{"time":"2025-03-08T17:46:33.827845305+08:00","level":"INFO","msg":"sender: closed","stream_id":"h4t0zepl"}
+{"time":"2025-03-08T17:46:33.827837352+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"h4t0zepl"}
+{"time":"2025-03-08T17:46:33.832972807+08:00","level":"INFO","msg":"stream: closed","id":"h4t0zepl"}

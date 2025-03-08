@@ -1,0 +1,26 @@
+{
+  "os": "Linux-5.15.0-130-generic-x86_64-with-glibc2.31",
+  "python": "CPython 3.10.16",
+  "startedAt": "2025-03-08T08:10:41.391513Z",
+  "program": "/autodl-fs/data/MAML-test/maml.py",
+  "codePath": "maml.py",
+  "root": "/autodl-fs/data/MAML-test",
+  "host": "autodl-container-396445a2a1-7ad22369",
+  "executable": "/root/miniconda3/envs/maml/bin/python",
+  "codePathLocal": "maml.py",
+  "cpu_count": 64,
+  "cpu_count_logical": 128,
+  "disk": {
+    "/": {
+      "total": "32212254720",
+      "used": "26096562176"
+    }
+  },
+  "memory": {
+    "total": "1081804201984"
+  },
+  "cpu": {
+    "count": 64,
+    "countLogical": 128
+  }
+}

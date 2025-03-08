@@ -1,0 +1,14 @@
+{"time":"2025-03-08T11:09:56.831817273+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.6","symlink path":"/autodl-fs/data/MAML-test/wandb/offline-run-20250308_110956-trykmbgu/logs/debug-core.log"}
+{"time":"2025-03-08T11:09:56.953427831+08:00","level":"INFO","msg":"created new stream","id":"trykmbgu"}
+{"time":"2025-03-08T11:09:56.953671511+08:00","level":"INFO","msg":"stream: started","id":"trykmbgu"}
+{"time":"2025-03-08T11:09:56.953735432+08:00","level":"INFO","msg":"handler: started","stream_id":"trykmbgu"}
+{"time":"2025-03-08T11:09:56.953743694+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"trykmbgu"}
+{"time":"2025-03-08T11:09:56.95387209+08:00","level":"INFO","msg":"sender: started","stream_id":"trykmbgu"}
+{"time":"2025-03-08T11:09:56.984972723+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-08T11:10:27.732928455+08:00","level":"INFO","msg":"stream: closing","id":"trykmbgu"}
+{"time":"2025-03-08T11:10:27.733044239+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-08T11:10:27.734289876+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-08T11:10:27.734523184+08:00","level":"INFO","msg":"handler: closed","stream_id":"trykmbgu"}
+{"time":"2025-03-08T11:10:27.734553377+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"trykmbgu"}
+{"time":"2025-03-08T11:10:27.734576169+08:00","level":"INFO","msg":"sender: closed","stream_id":"trykmbgu"}
+{"time":"2025-03-08T11:10:27.75059684+08:00","level":"INFO","msg":"stream: closed","id":"trykmbgu"}

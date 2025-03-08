@@ -1,0 +1,14 @@
+{"time":"2025-03-08T20:23:06.836905733+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/autodl-fs/data/MAML-test/wandb/offline-run-20250308_202306-stu15k12/logs/debug-core.log"}
+{"time":"2025-03-08T20:23:06.970567898+08:00","level":"INFO","msg":"created new stream","id":"stu15k12"}
+{"time":"2025-03-08T20:23:06.970730335+08:00","level":"INFO","msg":"stream: started","id":"stu15k12"}
+{"time":"2025-03-08T20:23:06.97076778+08:00","level":"INFO","msg":"handler: started","stream_id":"stu15k12"}
+{"time":"2025-03-08T20:23:06.970756271+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"stu15k12"}
+{"time":"2025-03-08T20:23:06.970791728+08:00","level":"INFO","msg":"sender: started","stream_id":"stu15k12"}
+{"time":"2025-03-08T20:23:06.997353034+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-08T20:24:25.099997685+08:00","level":"INFO","msg":"stream: closing","id":"stu15k12"}
+{"time":"2025-03-08T20:24:25.100115671+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-08T20:24:25.101249806+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-08T20:24:25.101357935+08:00","level":"INFO","msg":"handler: closed","stream_id":"stu15k12"}
+{"time":"2025-03-08T20:24:25.101371439+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"stu15k12"}
+{"time":"2025-03-08T20:24:25.101375777+08:00","level":"INFO","msg":"sender: closed","stream_id":"stu15k12"}
+{"time":"2025-03-08T20:24:25.107115293+08:00","level":"INFO","msg":"stream: closed","id":"stu15k12"}

@@ -1,0 +1,14 @@
+{"time":"2025-03-08T16:17:02.951358716+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/autodl-fs/data/MAML-test/wandb/offline-run-20250308_161702-wd7gbi7x/logs/debug-core.log"}
+{"time":"2025-03-08T16:17:03.075028259+08:00","level":"INFO","msg":"created new stream","id":"wd7gbi7x"}
+{"time":"2025-03-08T16:17:03.07518758+08:00","level":"INFO","msg":"stream: started","id":"wd7gbi7x"}
+{"time":"2025-03-08T16:17:03.075203568+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"wd7gbi7x"}
+{"time":"2025-03-08T16:17:03.075242344+08:00","level":"INFO","msg":"handler: started","stream_id":"wd7gbi7x"}
+{"time":"2025-03-08T16:17:03.075272808+08:00","level":"INFO","msg":"sender: started","stream_id":"wd7gbi7x"}
+{"time":"2025-03-08T16:17:03.095414943+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-08T16:18:12.174595681+08:00","level":"INFO","msg":"stream: closing","id":"wd7gbi7x"}
+{"time":"2025-03-08T16:18:12.17472143+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-08T16:18:12.175831073+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-08T16:18:12.176506661+08:00","level":"INFO","msg":"handler: closed","stream_id":"wd7gbi7x"}
+{"time":"2025-03-08T16:18:12.176542047+08:00","level":"INFO","msg":"sender: closed","stream_id":"wd7gbi7x"}
+{"time":"2025-03-08T16:18:12.176535701+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"wd7gbi7x"}
+{"time":"2025-03-08T16:18:12.18315181+08:00","level":"INFO","msg":"stream: closed","id":"wd7gbi7x"}

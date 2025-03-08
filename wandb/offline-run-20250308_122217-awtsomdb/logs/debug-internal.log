@@ -1,0 +1,14 @@
+{"time":"2025-03-08T12:22:17.664093537+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/autodl-fs/data/MAML-test/wandb/offline-run-20250308_122217-awtsomdb/logs/debug-core.log"}
+{"time":"2025-03-08T12:22:17.779805125+08:00","level":"INFO","msg":"created new stream","id":"awtsomdb"}
+{"time":"2025-03-08T12:22:17.779873104+08:00","level":"INFO","msg":"stream: started","id":"awtsomdb"}
+{"time":"2025-03-08T12:22:17.779890237+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"awtsomdb"}
+{"time":"2025-03-08T12:22:17.779914768+08:00","level":"INFO","msg":"handler: started","stream_id":"awtsomdb"}
+{"time":"2025-03-08T12:22:17.779943529+08:00","level":"INFO","msg":"sender: started","stream_id":"awtsomdb"}
+{"time":"2025-03-08T12:22:17.79493663+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-08T12:23:21.859751329+08:00","level":"INFO","msg":"stream: closing","id":"awtsomdb"}
+{"time":"2025-03-08T12:23:21.859802853+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-08T12:23:21.860834553+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-08T12:23:21.861027898+08:00","level":"INFO","msg":"handler: closed","stream_id":"awtsomdb"}
+{"time":"2025-03-08T12:23:21.861059012+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"awtsomdb"}
+{"time":"2025-03-08T12:23:21.861077711+08:00","level":"INFO","msg":"sender: closed","stream_id":"awtsomdb"}
+{"time":"2025-03-08T12:23:21.866065412+08:00","level":"INFO","msg":"stream: closed","id":"awtsomdb"}

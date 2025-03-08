@@ -1,0 +1,14 @@
+{"time":"2025-03-08T20:31:27.333273678+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/autodl-fs/data/MAML-test/wandb/offline-run-20250308_203127-dgiv899k/logs/debug-core.log"}
+{"time":"2025-03-08T20:31:27.457338252+08:00","level":"INFO","msg":"created new stream","id":"dgiv899k"}
+{"time":"2025-03-08T20:31:27.457436771+08:00","level":"INFO","msg":"stream: started","id":"dgiv899k"}
+{"time":"2025-03-08T20:31:27.45747195+08:00","level":"INFO","msg":"handler: started","stream_id":"dgiv899k"}
+{"time":"2025-03-08T20:31:27.457470654+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"dgiv899k"}
+{"time":"2025-03-08T20:31:27.457497766+08:00","level":"INFO","msg":"sender: started","stream_id":"dgiv899k"}
+{"time":"2025-03-08T20:31:27.484649102+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-08T20:32:45.582631984+08:00","level":"INFO","msg":"stream: closing","id":"dgiv899k"}
+{"time":"2025-03-08T20:32:45.582785151+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-08T20:32:45.583968075+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-08T20:32:45.584309931+08:00","level":"INFO","msg":"handler: closed","stream_id":"dgiv899k"}
+{"time":"2025-03-08T20:32:45.584341687+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"dgiv899k"}
+{"time":"2025-03-08T20:32:45.584386952+08:00","level":"INFO","msg":"sender: closed","stream_id":"dgiv899k"}
+{"time":"2025-03-08T20:32:45.590170096+08:00","level":"INFO","msg":"stream: closed","id":"dgiv899k"}

@@ -1,0 +1,14 @@
+{"time":"2025-03-08T20:16:17.267296726+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/autodl-fs/data/MAML-test/wandb/offline-run-20250308_201617-ak7edmn7/logs/debug-core.log"}
+{"time":"2025-03-08T20:16:17.395668396+08:00","level":"INFO","msg":"created new stream","id":"ak7edmn7"}
+{"time":"2025-03-08T20:16:17.395786753+08:00","level":"INFO","msg":"stream: started","id":"ak7edmn7"}
+{"time":"2025-03-08T20:16:17.395830091+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"ak7edmn7"}
+{"time":"2025-03-08T20:16:17.395991829+08:00","level":"INFO","msg":"handler: started","stream_id":"ak7edmn7"}
+{"time":"2025-03-08T20:16:17.395877582+08:00","level":"INFO","msg":"sender: started","stream_id":"ak7edmn7"}
+{"time":"2025-03-08T20:16:17.425456713+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-08T20:17:58.556910502+08:00","level":"INFO","msg":"stream: closing","id":"ak7edmn7"}
+{"time":"2025-03-08T20:17:58.557026554+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-08T20:17:58.559036724+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-08T20:17:58.559261022+08:00","level":"INFO","msg":"handler: closed","stream_id":"ak7edmn7"}
+{"time":"2025-03-08T20:17:58.559361524+08:00","level":"INFO","msg":"sender: closed","stream_id":"ak7edmn7"}
+{"time":"2025-03-08T20:17:58.559341408+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ak7edmn7"}
+{"time":"2025-03-08T20:17:58.564686471+08:00","level":"INFO","msg":"stream: closed","id":"ak7edmn7"}

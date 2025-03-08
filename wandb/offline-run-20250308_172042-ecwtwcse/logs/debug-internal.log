@@ -1,0 +1,14 @@
+{"time":"2025-03-08T17:20:42.825137991+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/autodl-fs/data/MAML-test/wandb/offline-run-20250308_172042-ecwtwcse/logs/debug-core.log"}
+{"time":"2025-03-08T17:20:43.094030033+08:00","level":"INFO","msg":"created new stream","id":"ecwtwcse"}
+{"time":"2025-03-08T17:20:43.094280478+08:00","level":"INFO","msg":"stream: started","id":"ecwtwcse"}
+{"time":"2025-03-08T17:20:43.094310905+08:00","level":"INFO","msg":"handler: started","stream_id":"ecwtwcse"}
+{"time":"2025-03-08T17:20:43.094424743+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"ecwtwcse"}
+{"time":"2025-03-08T17:20:43.094478953+08:00","level":"INFO","msg":"sender: started","stream_id":"ecwtwcse"}
+{"time":"2025-03-08T17:20:43.18235867+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-08T17:20:44.18659242+08:00","level":"INFO","msg":"stream: closing","id":"ecwtwcse"}
+{"time":"2025-03-08T17:20:44.186764886+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-08T17:20:44.188298638+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-08T17:20:44.188580381+08:00","level":"INFO","msg":"handler: closed","stream_id":"ecwtwcse"}
+{"time":"2025-03-08T17:20:44.188607337+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ecwtwcse"}
+{"time":"2025-03-08T17:20:44.188629489+08:00","level":"INFO","msg":"sender: closed","stream_id":"ecwtwcse"}
+{"time":"2025-03-08T17:20:44.195027611+08:00","level":"INFO","msg":"stream: closed","id":"ecwtwcse"}

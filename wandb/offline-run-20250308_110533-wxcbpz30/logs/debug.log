@@ -1,0 +1,23 @@
+2025-03-08 11:05:33,189 INFO    MainThread:4977 [wandb_setup.py:_flush():68] Current SDK version is 0.19.6
+2025-03-08 11:05:33,189 INFO    MainThread:4977 [wandb_setup.py:_flush():68] Configure stats pid to 4977
+2025-03-08 11:05:33,189 INFO    MainThread:4977 [wandb_setup.py:_flush():68] Loading settings from /root/.config/wandb/settings
+2025-03-08 11:05:33,189 INFO    MainThread:4977 [wandb_setup.py:_flush():68] Loading settings from /autodl-fs/data/MAML-test/wandb/settings
+2025-03-08 11:05:33,189 INFO    MainThread:4977 [wandb_setup.py:_flush():68] Loading settings from environment variables
+2025-03-08 11:05:33,190 INFO    MainThread:4977 [wandb_init.py:setup_run_log_directory():637] Logging user logs to /autodl-fs/data/MAML-test/wandb/offline-run-20250308_110533-wxcbpz30/logs/debug.log
+2025-03-08 11:05:33,191 INFO    MainThread:4977 [wandb_init.py:setup_run_log_directory():638] Logging internal logs to /autodl-fs/data/MAML-test/wandb/offline-run-20250308_110533-wxcbpz30/logs/debug-internal.log
+2025-03-08 11:05:33,191 INFO    MainThread:4977 [wandb_init.py:init():756] calling init triggers
+2025-03-08 11:05:33,191 INFO    MainThread:4977 [wandb_init.py:init():761] wandb.init called with sweep_config: {}
+config: {'benchmark_name': 'ML1', 'env_name': 'reach-v2', 'max_episode_steps': 500, 'num_epsiodes_of_validation': 4, 'num_lifetimes_for_validation': 120, 'seeding': False, 'seed': 1, 'device': 'auto', 'num_outer_loop_updates': 4000, 'num_inner_loops_per_update': 30, 'num_adaptation_updates_in_inner_loop': 1, 'num_env_steps_per_adaptation_update': 2000, 'num_env_steps_for_estimating_maml_loss': 4000, 'num_lifetime_steps': 6000, 'maml_agent_lr': 0.0005, 'maml_agent_epsilon': 1e-05, 'maml_critic_lr': 0.0005, 'adaptation_lr': 0.07, 'adaptation_gamma': 0.995, 'rewards_target_mean_for_maml_agent': 0.1, 'maml_agent_gamma': 0.995, 'maml_TRPO': {'cg_damping': 0.01, 'max_kl': 0.001, 'cg_iters': 10, 'line_search_max_steps': 10, 'line_search_backtrack_ratio': 0.6}, '_wandb': {}}
+2025-03-08 11:05:33,191 INFO    MainThread:4977 [wandb_init.py:init():789] starting backend
+2025-03-08 11:05:33,409 INFO    MainThread:4977 [wandb_init.py:init():793] sending inform_init request
+2025-03-08 11:05:33,425 INFO    MainThread:4977 [backend.py:_multiprocessing_setup():97] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-03-08 11:05:33,426 INFO    MainThread:4977 [wandb_init.py:init():808] backend started and connected
+2025-03-08 11:05:33,433 INFO    MainThread:4977 [wandb_init.py:init():901] updated telemetry
+2025-03-08 11:05:33,437 INFO    MainThread:4977 [wandb_init.py:init():936] communicating run to backend with 90.0 second timeout
+2025-03-08 11:05:33,582 INFO    MainThread:4977 [wandb_init.py:init():994] starting run threads in backend
+2025-03-08 11:05:33,724 INFO    MainThread:4977 [wandb_run.py:_console_start():2385] atexit reg
+2025-03-08 11:05:33,725 INFO    MainThread:4977 [wandb_run.py:_redirect():2235] redirect: wrap_raw
+2025-03-08 11:05:33,725 INFO    MainThread:4977 [wandb_run.py:_redirect():2300] Wrapping output streams.
+2025-03-08 11:05:33,725 INFO    MainThread:4977 [wandb_run.py:_redirect():2325] Redirects installed.
+2025-03-08 11:05:33,727 INFO    MainThread:4977 [wandb_init.py:init():1036] run started, returning control to user process
+2025-03-08 11:05:45,097 WARNING MsgRouterThr:4977 [router.py:message_loop():75] message_loop has been closed
